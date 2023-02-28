@@ -100,7 +100,8 @@
         若工作人員無法即時檢修與調度而造成站點的車輛數和空位不平衡，
         將會降低使用者使用意願。
         本專案提出超啟發式演算法(adaptive simulated annealing genetic algorithm ; ASAGA)作為 one-shot 神經網路架構搜尋(neural architecture search ; NAS)的搜尋策略，
-        搭配上以混合為基礎的超參數(hyperparameter)優化，
+        搭配上以混合為基礎的超參數(hyperparameter)優化。
+        本專題原計畫利用台灣微笑單車youbike2.0的資料進行實驗，但因資料取得較不易以及有缺失的情況，所以我們改
         藉由紐約市公共自行車系統資料，
         建立高效深度學習模型用以預測各站點狀況，
         並實際應用於本地高雄市公共自行車系統以解決各站點車輛不平衡之問題。
@@ -790,7 +791,7 @@
                 \end{table}
 
         \subsection{使用者介面設計}
-            為了視覺化我們的實驗結果，
+            為了視覺化實驗結果以利快速掌握系統各站點現況，
             我們架設了一個簡單的網站來呈現模型在每個不同時間區間對每個站點預測的結果，
             並且以顏色來區分預測結果之好壞。
             我們運用開源的框架及模組來架構網頁基礎，
@@ -799,8 +800,8 @@
             \begin{itemize}
                 \item 框架 → Django： \\
                     Django是一個以Python所建立的模組模板可視化(model-template views ; MTV)網路框架。
-                \item 非同步請求(asynchronous request) → Ajax、Asynchronous JavaScript與XML： \\
-                    Ajax和Asynchronous JavaScript是一個能讓網站能在不用刷新頁面的情況下自動從資料庫抓取資料的一個請求方法(request method)。
+                \item 非同步請求(asynchronous request) → Asynchronous JavaScript and XML (Ajax)： \\
+                    Ajax是一個能讓網站能在不用刷新頁面的情況下自動從資料庫抓取資料的一個請求方法(request method)。
                 \item Javascript第三方程式庫 → chart.js： \\
                     我們引用了chart.js這個函式庫輔助網頁上視覺化作圖的部分。
                 \item 資料庫 → MySQL： \\
@@ -831,7 +832,7 @@
             舉例來說，
             Instagram與Facebook等大型社交媒體能夠在不重新整理頁面的前提下獲得新的內容，
             這就是Ajax的基本應用。
-            \xfig{fig:asynchronous}簡單示意了同步與非同步請求的差別。
+            \xfig{fig:asynchronous} 簡單示意了同步與非同步請求的差別。
             可以看到傳統的同步請求必須在一次請求之後必須馬上回覆一次，
             這在處理大量資料時會造成等待時間過久，
             非同步請求則能有效解決掉這方面的困擾。
@@ -843,6 +844,52 @@
                 }
                 \label{fig:asynchronous}
             \end{figure}
+
+            \xfig{fig:web-view} 是網頁的主要介面，右側面板為當前天氣狀況，左側則是100個目標站點在
+            當前時間點的模型預測狀況以及真實站點車輛數。每次更新的時間為15分鐘一次，為快速呈現模型成果，
+            我們每三秒即更新一次介面。
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[width=\textwidth]{web-view.png}
+                \caption{
+                    紐約市站點需求預測地圖。
+                }
+                \label{fig:web-view}
+            \end{figure}
+
+            從使用者介面上可以看到三種顏色的區分，
+            綠色代表相當準確，藍色為尚可接受，紅色則是預測結果和實際數值有落差，
+            判斷站點不準確度的公式如下 \ref{acc_equ}. $S_p$是在此時間區間開始時模型預測的站點車輛數，$E_p$ 
+            是時間區間結束時的預測結果。$S_t$ 和 $E_t$ 則分別代表在此時間區間開始及結束的真實站點車輛數。
+            如果不準確度達於0.2則站點及呈現紅色，小於0.06則呈現綠色，其餘裝快接為可接受範圍，呈現藍色。
+            \begin{equation}
+            \label{acc_equ}
+            \text{$inaccuracy$} = \frac{|S_p-S_t|+|E_p-E_t|}{S_t+E_t}.
+            \end{equation}
+
+            \[
+            colors =
+            \begin{cases}
+            red & \text{if $inaccuracy>0.2$} \\
+            green & \text{if $inaccuracy<0.06$} \\
+            blue & \text{else} 
+            \end{cases}
+            \]
+
+            \xfig{fig:details} 中間的面板呈現了當日預測狀況的折線圖，從折線圖每日的走向可以發現，當到尖峰時刻
+            尤其是傍晚下班時，模型的預測準確度下降了許多，原因是因為隨著用量突然增加，模型在預測上也會有相對更高的誤差
+            。我們也將不準確次數前10多的站點挑出來，以利日後可以針對站點來了解主要造成原因為何，以及我們可以如何改善。
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[width=\textwidth]{details.png}
+                \caption{
+                    當日預測情況以及每月預測最不準的站點。
+                }
+                \label{fig:details}
+            \end{figure}
+
+            
+
 
     \newpage
     \section{結論}
