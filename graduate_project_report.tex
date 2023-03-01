@@ -65,14 +65,14 @@
     {\fontsize{20pt}{20pt}\selectfont
             \begin{titlepage}
                 \begin{center}
-                國立中山大學 111 學年度\\
+                國家科學及技術委員會 111 學年度\\
                 \vspace{0.5em}
-                資訊工程學系專題計劃書\\
+                大專生計畫結案報告書\\
                 \vfill
                 \textbf{{\@title}\\
                 An Effective Evolutionary Neural Architecture Search for Bike-Sharing System Demand Prediction}\\
 
-                \vfill          
+                \vfill
                 組員：\\
                 B084020005 蔡昀燁\\
                 B083040012 陳柏翰\\
@@ -84,6 +84,8 @@
 
                 \end{center}
             \end{titlepage}
+            \newpage
+            \stepcounter{page}
         }
     }
 \makeatother
@@ -105,8 +107,8 @@
         因資料取得較不易以及有缺失的情況，
         我們改用了紐約市公共自行車系統資料，
         建立高效深度學習模型用以預測各站點狀況，
-        並實際應用於本地高雄市公共自行車系統以解決各站點車輛不平衡之問題。
-        期望以預測結果改善現有公共自行車的服務品質，
+        並期望實際應用於本地高雄市公共自行車系統以解決各站點車輛不平衡之問題，
+        以預測結果改善現有公共自行車的服務品質，
         提高民眾使用意願，
         最終達到紓困交通且提升營運方收入的效果。
         {\vskip 1em}
@@ -292,7 +294,11 @@
 
         \begin{table}[tbh]
         \setlength{\belowcaptionskip}{12pt}
-        \caption{\textbf{符號表}}
+        \caption{
+            {\fontsize{12pt}{10pt}\selectfont
+                \textbf{符號表}
+            }
+        }
         \centering
         \begin{NiceTabular}{|l|l|}
             \CodeBefore
@@ -323,14 +329,16 @@
         \begin{figure}[h]
             \includegraphics[width=\textwidth]{SAGAON.png}
             \caption{
-                SAGAON的架構。
-                (A) 站點車輛數目跟車流量資料會經過數層卷積層。
-                one-shot NAS會同時訓練多個包含不同卷積核大小、池化層和激勵函數的選擇模塊。
-                (B) 採用天氣和興趣指數等額外特徵，
-                該模型可以學習更多影響到公共自行車系統行為模式的外部因素。
-                (C) 使用長短期記憶模型來捕捉腳踏車車流的週期性。
-                $P$代表長短期記憶模型所考慮的天數，
-                而$t$則是代表預測目標的時段(timeslot)。
+                {\fontsize{12pt}{10pt}\selectfont
+                    SAGAON的架構。
+                    (A) 站點車輛數目跟車流量資料會經過數層卷積層。
+                    one-shot NAS會同時訓練多個包含不同卷積核大小、池化層和激勵函數的選擇模塊。
+                    (B) 採用天氣和興趣指數等額外特徵，
+                    該模型可以學習更多影響到公共自行車系統行為模式的外部因素。
+                    (C) 使用長短期記憶模型來捕捉腳踏車車流的週期性。
+                    $P$代表長短期記憶模型所考慮的天數，
+                    而$t$則是代表預測目標的時段(timeslot)。
+                }
             }
             \label{fig:SAGAON}
         \end{figure}
@@ -375,13 +383,16 @@
 
         \subsection{One-Shot NAS 及自適應退火基因演算法}
             
-            \begin{figure}[htbp]
-                \includegraphics[width=\textwidth]{cell.pdf}
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.7\textwidth]{cell.pdf}
                 \caption{
-                    元件與選擇模塊。
-                    站點車輛數特徵以及車流量特徵會經過三層元件，並在選擇模塊中隨機選擇不同的
-                    卷積核大小、池化層以及激勵函數。
-                    圖中的實線為固有的模型架構，虛線為經過隨機選擇的可能結果。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        元件與選擇模塊。
+                        站點車輛數特徵以及車流量特徵會經過三層元件，並在選擇模塊中隨機選擇不同的
+                        卷積核大小、池化層以及激勵函數。
+                        圖中的實線為固有的模型架構，虛線為經過隨機選擇的可能結果。
+                    }
                 }
                 \label{fig:cell}
             \end{figure}
@@ -421,49 +432,56 @@
             \renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm
             \renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
 
-            {\fontsize{12pt}{10.5pt}\selectfont
-                \begin{breakablealgorithm}
-                    \caption{ASAGA}\label{alg:ASAGA}
-                    \begin{algorithmic}[1]
-                        \Require Supernet $S$
-                        \Ensure Best Architecture $B$
-                        \State Initialize: Generation Size $G$, Initial Temperature $T$,
-                        Final Temperature $T_{min}$, Annealing Ratio $\psi$, Architecture Population $P$,
-                        Offspring in genetic algorithm $O$.
-                        \State $P \gets random(S)$
-                        \State $B \gets P_{best}$
-                        \While{$G \neq 0 $ AND $T > T_{min}$}
-                            \For{\texttt{n=0 to $\frac{N}{2}$}}
-                                \State Select Two Architecture: $p \gets random(P)$
-                                \State $O \gets crossover(p)$
-                                \State $O \gets mutation(O)$
-                                \For{\texttt{i=1 to 2}}
-                                    \State $\delta \gets evaluate(p[i]) - evaluate(O[i])$
-                                    \If{$\delta > 0$}
-                                        \State $p[i] \gets O[i]$
-                                    \ElsIf{$rand < e^{\frac{\delta}{T}}$}
-                                        \State $p[i] \gets O[i]$
-                                    \EndIf
-                                \EndFor
-                            \State $P \gets update(P, p)$
-                            \EndFor
-                        \If{$evaluate(B) > evaluate(P_{best})$}
+                \begin{algorithm}
+                    \caption{
+                        {\fontsize{12pt}{10pt}\selectfont
+                            ASAGA
+                        }
+                        \label{alg:ASAGA}
+                    }
+                    {\fontsize{14pt}{13.5pt}\selectfont
+                        \begin{algorithmic}[1htbp]
+                            \Require Supernet $S$
+                            \Ensure Best Architecture $B$
+                            \State Initialize: Generation Size $G$, Initial Temperature $T$,
+                            Final Temperature $T_{min}$, Annealing Ratio $\psi$, Architecture Population $P$,
+                            Offspring in genetic algorithm $O$.
+                            \State $P \gets random(S)$
                             \State $B \gets P_{best}$
-                        \EndIf
-                        \State $T \gets T*\psi$
-                        \State $G \gets G - 1$
-                        \EndWhile \\
-                        \Return $B$
-                    \end{algorithmic}
-                \end{breakablealgorithm}
-            }
+                            \While{$G \neq 0 $ AND $T > T_{min}$}
+                                \For{\texttt{n=0 to $\frac{N}{2}$}}
+                                    \State Select Two Architecture: $p \gets random(P)$
+                                    \State $O \gets crossover(p)$
+                                    \State $O \gets mutation(O)$
+                                    \For{\texttt{i=1 to 2}}
+                                        \State $\delta \gets evaluate(p[i]) - evaluate(O[i])$
+                                        \If{$\delta > 0$}
+                                            \State $p[i] \gets O[i]$
+                                        \ElsIf{$rand < e^{\frac{\delta}{T}}$}
+                                            \State $p[i] \gets O[i]$
+                                        \EndIf
+                                    \EndFor
+                                \State $P \gets update(P, p)$
+                                \EndFor
+                            \If{$evaluate(B) > evaluate(P_{best})$}
+                                \State $B \gets P_{best}$
+                            \EndIf
+                            \State $T \gets T*\psi$
+                            \State $G \gets G - 1$
+                            \EndWhile \\
+                            \Return $B$
+                        \end{algorithmic}
+                    }
+                \end{algorithm}
 
-            \begin{figure}[htbp]
+            \begin{figure}[htb]
                 \includegraphics[width=\textwidth]{flow.pdf}
                 \caption{
-                    ASAGA的運作流程。
-                    在每一世代中ASAGA會從訓練完成的超級網路隨機選擇架構進行評估，
-                    並在最後一個世代結束時搜尋出表現最佳的模型架構。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        ASAGA的運作流程。
+                        在每一世代中ASAGA會從訓練完成的超級網路隨機選擇架構進行評估，
+                        並在最後一個世代結束時搜尋出表現最佳的模型架構。
+                    }
                 }
                 \label{fig:ASAGA}
             \end{figure}
@@ -505,25 +523,29 @@
             \xfig{fig:crossover}、\xfig{fig:mutation}展示了交配運算子與突變運算子的實際流程，
             類基因演算法中兩者分別代表鄰近(lcoal)和全域(global)搜尋，
             嘗試在有限的資源條件下找出最佳的適應解。
-            \begin{figure}[htbp]
+            \begin{figure}[htb]
                 \centering
                 \includegraphics[width=\textwidth]{crossover.pdf}
                 \caption{
-                    交配運算子示例。
-                    本專案使用多點(plural-points)交配運算，
-                    在每次交配時隨機選出多個交配點(crossover point)來進行基因交換。
-                    在此範例中被選定的交配點用藍色區塊來表示。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        交配運算子示例。
+                        本專案使用多點(plural-points)交配運算，
+                        在每次交配時隨機選出多個交配點(crossover point)來進行基因交換。
+                        在此範例中被選定的交配點用藍色區塊來表示。
+                    }
                 }
                 \label{fig:crossover}
             \end{figure}
-            \begin{figure}[htbp]
+            \begin{figure}[htb]
                 \centering
                 \includegraphics[width=\textwidth]{mutation.pdf}
                 \caption{
-                    突變運算子示例。
-                    此專案採用多點突變，
-                    每次進行突變操作時隨機選出多個突變點進行布林(Boolean)反向運算。
-                    在此範例中被選定的突變點用淺綠色來示意。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        突變運算子示例。
+                        此專案採用多點突變，
+                        每次進行突變操作時隨機選出多個突變點進行布林(Boolean)反向運算。
+                        在此範例中被選定的突變點用淺綠色來示意。
+                    }
                 }
                 \label{fig:mutation}
             \end{figure}
@@ -534,11 +556,13 @@
             增加搜尋空間的彈性，
             避免落入區域最佳解之窠臼。
 
-            \begin{figure}[htbp]
+            \begin{figure}[!htb]
                 \centering
-                \includegraphics[width=\textwidth]{SAGA_scheme.png}
+                \includegraphics[width=0.725\textwidth]{SAGA_scheme.png}
                 \caption{
-                    自適應模擬退火基因演算法尋找最佳超參數的完整流程。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        自適應模擬退火基因演算法尋找最佳超參數的完整流程。
+                    }
                 }
                 \label{fig:SAGA_scheme}
             \end{figure}
@@ -645,7 +669,9 @@
                         \centering
                         \includegraphics[width=\textwidth]{chromosome_sheme.png}
                         \caption{
-                            STDN參數轉換成適用於該框架之染色體之預覽圖。
+                            {\fontsize{12pt}{10pt}\selectfont
+                                STDN參數轉換成適用於該框架之染色體之預覽圖。
+                            }
                         }
                         \label{fig:chromosome_sheme}
                     \end{figure}
@@ -669,7 +695,11 @@
                     因此在此實驗中各項超參數的上限即為原論文所使用的預設參數。
 
                     \begin{table}[htbp]
-                        \caption{超參數範圍}
+                        \caption{
+                            {\fontsize{12pt}{10pt}\selectfont
+                                超參數範圍
+                            }
+                        }
                         \centering
                         \begin{NiceTabular}{|c|c|c|}
                             \CodeBefore
@@ -701,25 +731,12 @@
                 每種方法都執行了5次並紀錄平均值和標準差。
                 SAGAON勝過了所有的基線實驗，
                 均方根誤差跟平均絕對百分比誤差(mean absolute percentage error ; MAPE)在測試資料集上皆為最低。
-                HA和ARIMA這類的傳統時序預測方法準確率非常糟糕，
-                因為它們只依靠過去的歷史紀錄來預測，
-                忽略了空間特徵。
-                SAGAON也勝過了長短期記憶模型、卷積長短期記憶模型和STDN這類深度學習方法，
-                潛在原因可能是SAGAON對於空間與時間特徵的處理更為妥當。
-                長短期記憶模型只關心過去連續的時序資料，
-                忽略了空間資料；
-                卷積長短期記憶模型使用卷積層來捕捉空間特徵，
-                並保留了長短期記憶模型的優勢。
-                STDN使用空間-時間相混的資料來進行訓練，
-                用以捕捉了動態空間相似性(dynamic spatial similarity)和週期時間遞移性(periodic temporal shifting)，
-                這也是它的結果能夠勝過其他模型的決定性因素。
-                以STDN為基礎，
-                我們提出的SAGAON增添了one-shot NAS的超級網路，
-                藉由選擇不同的選擇模塊來增加訓練的準確率，
-                同時因為透過超啟發式演算法ASAGA作為搜尋策略，
-                SAGAON在搜尋架構的過程中可以減少許多時間和計算資源。
-                \begin{table}[htbp]
-                    \caption{基線實驗和SAGAON之間的比較}
+                \begin{table}[htb]
+                    \caption{
+                        {\fontsize{12pt}{10pt}\selectfont
+                            基線實驗和SAGAON之間的比較
+                        }
+                    }
                     \centering
                     \newcommand{\z}{\phantom{0}}
                     \resizebox{\columnwidth}{!}{
@@ -743,21 +760,52 @@
                         \end{NiceTabular}}
                     \label{tab:comparison}    
                 \end{table}
+                
+                HA和ARIMA這類的傳統時序預測方法準確率非常糟糕，
+                因為它們只依靠過去的歷史紀錄來預測，
+                忽略了空間特徵。
+                SAGAON也勝過了長短期記憶模型、卷積長短期記憶模型和STDN這類深度學習方法，
+                潛在原因可能是SAGAON對於空間與時間特徵的處理更為妥當。
+                長短期記憶模型只關心過去連續的時序資料，
+                忽略了空間資料；
+                卷積長短期記憶模型使用卷積層來捕捉空間特徵，
+                並保留了長短期記憶模型的優勢。
+                STDN使用空間-時間相混的資料來進行訓練，
+                用以捕捉了動態空間相似性(dynamic spatial similarity)和週期時間遞移性(periodic temporal shifting)，
+                這也是它的結果能夠勝過其他模型的決定性因素。
+                以STDN為基礎，
+                我們提出的SAGAON增添了one-shot NAS的超級網路，
+                藉由選擇不同的選擇模塊來增加訓練的準確率，
+                同時因為透過超啟發式演算法ASAGA作為搜尋策略，
+                SAGAON在搜尋架構的過程中可以減少許多時間和計算資源。
 
-                \begin{figure}[htbp]
+
+                \begin{figure}[htb]
                     \centering
                     \begin{subfigure}{.5\columnwidth}
                         \centering
                         \includegraphics[width=\linewidth]{station_level_RMSE.pdf}
-                        \caption{Station-level RMSE}
+                        \caption{
+                            {\fontsize{12pt}{10pt}\selectfont
+                                Station-level RMSE
+                            }
+                        }
                     \end{subfigure}%
                     \hfill
                     \begin{subfigure}{.5\columnwidth}
                         \centering
                         \includegraphics[width=\linewidth]{station_level_MAPE.pdf}
-                        \caption{Station-level MAPE}
+                        \caption{
+                            {\fontsize{12pt}{10pt}\selectfont    
+                                Station-level MAPE
+                            }
+                        }
                     \end{subfigure}%
-                    \caption{SAGAON對比不同的基線實驗模型}
+                    \caption{
+                        {\fontsize{12pt}{10pt}\selectfont
+                            SAGAON對比不同的基線實驗模型
+                        }
+                    }
                     \label{fig:comparison}
                 \end{figure}
 
@@ -772,7 +820,11 @@
                 此優化得益於超啟發演算法的泛用性，
                 無需使用者先行理解該框架的背景知識即可運用。
                 \begin{table}[htbp]
-                    \caption{預設參數和採用了超啟發演算法搜尋策略之間的比較}
+                    \caption{
+                        {\fontsize{12pt}{10pt}\selectfont
+                            預設參數和採用了超啟發演算法搜尋策略之間的比較
+                        }
+                    }
                     \begin{NiceTabular}{|c|r|r|r|r|}
                         \CodeBefore
                             \rowcolor{lightgray}{5}
@@ -817,11 +869,13 @@
             前後端的部分皆是使用Django預設的網路框架。
             在原先計畫中有考慮使用React或是Angular等更細緻化的前端框架，
             但考慮到時間成本因此最後並沒有採用。
-            \begin{figure}[htbp]
+            \begin{figure}[htb]
                 \centering
-                \includegraphics[width=\textwidth]{webpage.png}
+                \includegraphics[width=0.8\textwidth]{webpage.png}
                 \caption{
-                    網頁整體框架。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        網頁整體框架。
+                    }
                 }
                 \label{fig:webpage}
             \end{figure}
@@ -841,7 +895,9 @@
                 \centering
                 \includegraphics[width=0.35\textwidth]{asynchronous.png}
                 \caption{
-                    同步請求與非同步請求的差別。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        同步請求與非同步請求的差別。
+                    }
                 }
                 \label{fig:asynchronous}
             \end{figure}
@@ -849,18 +905,19 @@
             \xfig{fig:web-view} 是網頁的主要介面，右側面板為當前天氣狀況，左側則是100個目標站點在
             當前時間點的模型預測狀況以及真實站點車輛數。每次更新的時間為15分鐘一次，為快速呈現模型成果，
             我們每三秒即更新一次介面。
-            \begin{figure}[htbp]
+            \begin{figure}[htb]
                 \centering
                 \includegraphics[width=\textwidth]{web-view.png}
                 \caption{
-                    紐約市站點需求預測地圖。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        紐約市站點需求預測地圖。
+                    }
                 }
                 \label{fig:web-view}
             \end{figure}
-
             從使用者介面上可以看到三種顏色的區分，
             綠色代表相當準確，藍色為尚可接受，紅色則是預測結果和實際數值有落差，
-            判斷站點不準確度的公式如下 \ref{acc_equ}. $S_p$是在此時間區間開始時模型預測的站點車輛數，$E_p$ 
+            判斷站點不準確度的公式如下 \ref{acc_equ}。 $S_p$是在此時間區間開始時模型預測的站點車輛數，$E_p$ 
             是時間區間結束時的預測結果。$S_t$ 和 $E_t$ 則分別代表在此時間區間開始及結束的真實站點車輛數。
             如果不準確度達於0.2則站點及呈現紅色，小於0.06則呈現綠色，其餘裝快接為可接受範圍，呈現藍色。
             \begin{equation}
@@ -884,13 +941,12 @@
                 \centering
                 \includegraphics[width=\textwidth]{details.png}
                 \caption{
-                    當日預測情況以及每月預測最不準的站點。
+                    {\fontsize{12pt}{10pt}\selectfont
+                        當日預測情況以及每月預測最不準的站點。
+                    }
                 }
                 \label{fig:details}
             \end{figure}
-
-            
-
 
     \newpage
     \section{結論}
@@ -913,7 +969,7 @@
         如此一來便能讓SAGAON在更多資源有限的終端上運行。
 
     \newpage
-    \section{評審意見與回覆}
+    \section{未來展望}
         \begin{itemize}
             \item [\textbf{Q:}]
             在資料呈現頁面可以發現某些特定站點在大部分時間段的準確率都不是很理想，
@@ -979,7 +1035,7 @@
         關於前處理和模型的詳細程式碼，
         我們分別在(\url{https://github.com/YunYe0121/CitiBike_preprocessing})和(\url{https://github.com/B083040012/SAGAON})有更詳盡的說明。
         該專案之研究結果已整理齊全並已被IEEE Applied Sensing Conference\cite{SAGAON}所接受，
-        預計2023年1月於該研討會口頭發表。
+        已於2023年1月在該研討會口頭發表。
 
     \clearpage
     \stepcounter{section}
