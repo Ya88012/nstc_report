@@ -1,0 +1,33 @@
+\contentsline {section}{\numberline {1}摘要}{2}{section.1}%
+\contentsline {section}{\numberline {2}研究動機與研究問題}{5}{section.2}%
+\contentsline {section}{\numberline {3}文獻回顧與探討}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}交通流預測模型相關研究}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}腳踏車共享系統之站點預測相關研究}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}神經網路架構搜尋相關研究}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}One-Shot NAS及搜尋策略相關研究}{10}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}自動化機器學習相關研究}{11}{subsection.3.5}%
+\contentsline {section}{\numberline {4}研究方法}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}空間與時間的相互依賴性}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}One-Shot NAS 及自適應退火基因演算法}{16}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}興趣指數}{18}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}最佳化模型超參數}{20}{subsection.4.4}%
+\contentsline {section}{\numberline {5}實驗}{22}{section.5}%
+\contentsline {subsection}{\numberline {5.1}環境設置}{22}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}神經網路架構搜尋前處理}{23}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}再平衡對於公共自行車系統的影響}{23}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}車流量}{23}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}站點車輛數目}{24}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}參數設定}{24}{subsubsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.3}超參數優化前處理}{25}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}編碼設計}{25}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}參數設定}{25}{subsubsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.4}實驗結果}{26}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}神經網路架構搜尋成果}{26}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}超參數優化成果}{28}{subsubsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.5}使用者介面設計}{29}{subsection.5.5}%
+\contentsline {section}{\numberline {6}結論}{34}{section.6}%
+\contentsline {section}{\numberline {7}未來工作與相關回饋}{35}{section.7}%
+\contentsline {subsection}{\numberline {7.1}未來工作}{35}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}相關回饋}{35}{subsection.7.2}%
+\contentsline {section}{\numberline {8}致謝和聲明}{37}{section.8}%
+\contentsline {section}{9\hspace {1em}參考文獻}{38}{section*.18}%
