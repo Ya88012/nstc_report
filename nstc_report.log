@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  2 MAR 2023 21:11
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  8 MAR 2023 18:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Yun_Ye/Desktop/test/nstc_report_0302/nstc_report/nstc_report.tex
-(c:/Users/Yun_Ye/Desktop/test/nstc_report_0302/nstc_report/nstc_report.tex
+**c:/Users/Yun_Ye/Desktop/nstc_report/nstc_report.tex
+(c:/Users/Yun_Ye/Desktop/nstc_report/nstc_report.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22> (C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex/latex/extsizes\extarticle.cls
 Document Class: extarticle 1996/10/08 v1.0 Non Standard LaTeX document class
@@ -920,8 +920,8 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: cell.pdf Graphic file (type pdf)
 <use cell.pdf>
  [16] [17]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 495.
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 498.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 496.
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 499.
 
 
 Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
@@ -943,12 +943,12 @@ File: SAGA_scheme.png Graphic file (type bmp)
 File: chromosome_sheme.png Graphic file (type bmp)
 <chromosome_sheme.png>
 
-Overfull \hbox (38.74753pt too wide) in paragraph at lines 716--732
+Overfull \hbox (38.74753pt too wide) in paragraph at lines 717--733
 \TU/TimesNewRoman(0)/m/n/14.4 (long_term_lstm_num)\TU/標楷體(0)/m/n/14.4 、|  短 效 型 長 短 期 記 憶 模 型 數 量 \TU/TimesNewRoman(0)/m/n/14.4 (short_term_lstm_num)\TU/標楷體(0)/m/n/14.4 、|
  []
 
 
-Overfull \hbox (23.35376pt too wide) in paragraph at lines 716--732
+Overfull \hbox (23.35376pt too wide) in paragraph at lines 717--733
 \TU/標楷體(0)/m/n/14.4 鄰 近 區 域 大 小 \TU/TimesNewRoman(0)/m/n/14.4 (nbhd_size) \TU/標楷體(0)/m/n/14.4 與 卷 積 神 經 網 路 鄰 近 區 域 大 小 \TU/TimesNewRoman(0)/m/n/14.4 (cnn_nbhd_size)\TU/標楷體(0)/m/n/14.4 。|
  []
 
@@ -968,8 +968,8 @@ File: webpage.png Graphic file (type bmp)
 File: asynchronous.png Graphic file (type bmp)
 <asynchronous.png>
  [30]
-File: web-view.png Graphic file (type bmp)
-<web-view.png>
+File: nstc_adjust_image.png Graphic file (type bmp)
+<nstc_adjust_image.png>
  [31]
 File: details.png Graphic file (type bmp)
 <details.png>
@@ -985,12 +985,12 @@ Package rerunfilecheck Info: File `nstc_report.out' has not changed.
 (rerunfilecheck)             Checksum: 544864529979A4B6E2FE791219DB5ADB;3851.
  ) 
 Here is how much of TeX's memory you used:
- 30253 strings out of 411044
- 642183 string characters out of 2825189
+ 30255 strings out of 411044
+ 642237 string characters out of 2825189
  1025820 words of memory out of 3000000
- 50465 multiletter control sequences out of 15000+600000
+ 50467 multiletter control sequences out of 15000+600000
  413943 words of font info for 111 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 76i,19n,89p,496b,706s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,19n,89p,474b,706s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on nstc_report.xdv (44 pages, 507724 bytes).
+Output written on nstc_report.xdv (44 pages, 507864 bytes).

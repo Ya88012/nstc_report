@@ -310,7 +310,7 @@
             嘗試挖掘出目前資料集最適合的管線(pipeline)，
             並在最後將組合篩選(ensemble selection)將這些輸出合併在一起。
             在這個競賽中可以見得組合學習(ensemble learning)在自動化機器學習方面有極高的潛力，
-            但究竟是同質性(homogeneous)組合還是異質性(hetrogeneous)組合較為有效至今能為有個定論。
+            但究竟是同質性(homogeneous)組合還是異質性(hetrogeneous)組合較為有效至今能未有個定論。
 
             演化式計算常被用來在時間與資源壓力下找出近似最佳解。
             Real等人\cite{pmlr-v119-real20a}提出了AutoML-Zero這個框架，
@@ -322,7 +322,7 @@
             搜尋空間會稀疏許多，
             即使是簡單的線性回歸問題都可能難以找到適合的參數，
             為此加入了代理任務(proxy task)與遷徙(migration)機制，
-            幫助AutoML-Zero搜尋的速度。
+            提升AutoML-Zero搜尋的速度。
             實驗結果表明此做法能有效演化出高準確率的神經網路模型，
             即使只有使用簡單的數學符號為基本單位，
             AutoML-Zero依然能自己拼湊出當今常用的機器學習與神經網路優化技術，
@@ -408,6 +408,7 @@
         最後SAGAON將會得到一個超級網路並使用ASAGA演算法來搜尋與公共自行車需求問題相對應的最好架構。
         
         \subsection{空間與時間的相互依賴性}
+            \label{subsec:spatial_temporal}
             
             Li等人\cite{li2015traffic}根據地理位置將站點分群，
             並以群為單位進行預測，
@@ -647,7 +648,7 @@
         \subsection{神經網路架構搜尋前處理}
 
             \subsubsection{再平衡對於公共自行車系統的影響}
-
+                \label{subsubsec:rebal}
                 由於真實資料集中存在的雜訊和資訊缺失，
                 前處理方法也會大幅影響預測的準確率。
                 在實作New York Citi Bike資料集前處理時
@@ -665,8 +666,8 @@
                 我們便能盡量還原真實的站點車輛數目。
 
             \subsubsection{車流量}
-                \label{subsec:flow}
-                就如先前提到，
+                \label{subsubsec:flow}
+                就如\ref{subsec:spatial_temporal}提到，
                 與STDN所使用的前處理方式不同，
                 我們認為使用地理位置建構車流量特徵並不足以精準體現站點間的關係，
                 舉例來說，
@@ -687,8 +688,7 @@
                 把所有站點的車流量特徵標註到$n \times n$的網格裡。
 
             \subsubsection{站點車輛數目}
-                
-                利用前述的車流量特徵和再平衡方法，
+                利用\ref{subsubsec:rebal}的車流量特徵和再平衡方法，
                 便能夠還原站點車輛數目特徵。
                 我們將資料以每30分鐘進行劃分，
                 利用站點間的流量，
@@ -701,13 +701,14 @@
                 若為負值則會進行平移以確保預測值合理。
 
             \subsubsection{參數設定}
-                \label{subsec:parameters_setting}
+                \label{subsubsec:parameters_setting}
                 在我們的實驗中，批次大小(batch size)設定為64，
                 學習率(learning rate)則是0.001。
-                我們在訓練已經找到的神經網路架構時搭配了使用了停止(early stop)機制。
+                訓練尋獲的神經網路模型使用了提前停止機制(early stop)，
+                用以縮短訓練時間。
                 我們設定自適應模擬退火基因演算法的世代(generation)數目為10、族群則為20。
                 初始的溫度為1，
-                搭配上0.9的冷卻率(cooling ratio)。
+                搭配上0.9的冷卻率。
                 在評價結果時我們會過濾掉站點車輛數目值時小於15的部分。
 
             \subsection{超參數優化前處理}
@@ -815,7 +816,7 @@
                     \label{tab:comparison}    
                 \end{table}
                 
-                HA和ARIMA這類的傳統時序預測方法準確率非常糟糕，
+                HA和ARIMA這類的傳統時序預測方法相當不準確，
                 因為它們只依靠過去的歷史紀錄來預測，
                 忽略了空間特徵。
                 SAGAON也勝過了長短期記憶模型、卷積長短期記憶模型和STDN這類深度學習方法，
@@ -832,7 +833,6 @@
                 藉由選擇不同的選擇模塊來增加訓練的準確率，
                 同時因為透過超啟發式演算法ASAGA作為搜尋策略，
                 SAGAON在搜尋架構的過程中可以減少許多時間和計算資源。
-
 
                 \begin{figure}[htb]
                     \centering
@@ -961,7 +961,7 @@
             我們每三秒即更新一次介面。
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=\textwidth]{web-view.png}
+                \includegraphics[width=\textwidth]{nstc_adjust_image.png}
                 \caption{
                     {\fontsize{12pt}{10pt}\selectfont
                         紐約市站點需求預測地圖。
@@ -1051,7 +1051,7 @@
                 \item [\textbf{Q:}]
                 可以詳述如何把站點座標轉換成網格座標的嗎？
                 \item [\textbf{A:}]
-                在\ref{subsec:point_of_interest}與\ref{subsec:flow}提到了如何把興趣地點與目標站點的經緯度轉換成對應的網格座標。
+                在\ref{subsec:point_of_interest}與\ref{subsubsec:flow}提到了如何把興趣地點與目標站點的經緯度轉換成對應的網格座標。
                 使用平行四邊形勾畫目標區域並找出2種構成該區域的對應向量，
                 劃分出需要的網格大小以此完成座標化。
                 \item [\textbf{Q:}]

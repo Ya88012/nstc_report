@@ -1,6 +1,6 @@
-PWD c:\Users\Yun_Ye\Desktop\test\nstc_report_0302\nstc_report
+PWD c:\Users\Yun_Ye\Desktop\nstc_report
 INPUT C:\Users\Yun_Ye\AppData\Local\MiKTeX\miktex\data\le\xetex\xelatex.fmt
-INPUT c:\Users\Yun_Ye\Desktop\test\nstc_report_0302\nstc_report\nstc_report.tex
+INPUT c:\Users\Yun_Ye\Desktop\nstc_report\nstc_report.tex
 OUTPUT nstc_report.log
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\extsizes\extarticle.cls
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\extsizes\extarticle.cls
@@ -1145,9 +1145,9 @@ INPUT webpage.png
 INPUT .\asynchronous.png
 INPUT .\asynchronous.png
 INPUT asynchronous.png
-INPUT .\web-view.png
-INPUT .\web-view.png
-INPUT web-view.png
+INPUT .\nstc_adjust_image.png
+INPUT .\nstc_adjust_image.png
+INPUT nstc_adjust_image.png
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
