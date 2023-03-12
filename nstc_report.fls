@@ -1,6 +1,6 @@
-PWD c:\Users\Yun_Ye\Desktop\nstc_report
+PWD c:\Users\Yun_Ye\Desktop\nstc\nstc_report
 INPUT C:\Users\Yun_Ye\AppData\Local\MiKTeX\miktex\data\le\xetex\xelatex.fmt
-INPUT c:\Users\Yun_Ye\Desktop\nstc_report\nstc_report.tex
+INPUT c:\Users\Yun_Ye\Desktop\nstc\nstc_report\nstc_report.tex
 OUTPUT nstc_report.log
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\extsizes\extarticle.cls
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\extsizes\extarticle.cls
@@ -660,6 +660,17 @@ INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
 INPUT lstset.tex
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\listings\listings.sty
 INPUT C:\Users\Yun_Ye\AppData\Local\Programs\MiKTeX\tex\latex\listings\listings.sty
