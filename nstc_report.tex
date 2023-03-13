@@ -449,11 +449,11 @@
             \caption{
                 {\fontsize{12pt}{10pt}\selectfont
                     SAGAON的架構。
-                    (A) 站點車輛數目跟車流量資料會經過數層卷積層。
+                    (a) 站點車輛數目跟車流量資料會經過數層卷積層。
                     one-shot NAS會同時訓練多個包含不同卷積核大小、池化層和激勵函數的選擇模塊。
-                    (B) 採用天氣和興趣指數等額外特徵，
+                    (b) 採用天氣和興趣指數等額外特徵，
                     該模型可以學習更多影響到公共自行車系統行為模式的外部因素。
-                    (C) 使用長短期記憶模型來捕捉腳踏車車流的週期性。
+                    (c) 使用長短期記憶模型來捕捉腳踏車車流的週期性。
                     $P$代表長短期記憶模型所考慮的天數，
                     而$t$則是代表預測目標的時段(timeslot)。
                 }
@@ -465,77 +465,89 @@
         我們提出了一個全新的神經網路架構搜尋框架-模擬退火基因演算法one-shot神經網路搜尋(simulated annealing-genetic algorithm one-shot network ; SAGAON)。
         \xfig{fig:SAGAON}為SAGAON框架的示意圖，
         主要分為3個部分。
-        首先\xfig{fig:SAGAON}(A)中的複數卷積層捕捉空間特徵，
-        其結果會與\xfig{fig:SAGAON}(B)的額外特徵進行串接。
+        首先\xfig{fig:SAGAON}(a)中的複數卷積層捕捉空間特徵，
+        其結果會與\xfig{fig:SAGAON}(b)的額外特徵進行串接。
         在得到空間特徵之後，
-        資料將會被送到\xfig{fig:SAGAON}(C)部分的長短期記憶模型來解析時序特徵。
+        資料將會被送到\xfig{fig:SAGAON}(c)部分的長短期記憶模型來解析時序特徵。
         最後SAGAON將會得到一個超級網路並使用ASAGA演算法來搜尋與公共自行車需求問題相對應的最好架構。
+
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\textwidth]{cell.pdf}
+            \caption{
+                {\fontsize{12pt}{10pt}\selectfont
+                    元件與選擇模塊。
+                    站點車輛數特徵以及車流量特徵會經過三層元件，並在選擇模塊中隨機選擇不同的
+                    卷積核大小、池化層以及激勵函數。
+                    圖中的實線為固有的模型架構，虛線為經過隨機選擇的可能結果。
+                }
+            }
+            \label{fig:cell}
+        \end{figure}
         
-        \subsection{空間與時間的相互依賴性}
+        \subsection{空間特徵和One-Shot NAS}
             \label{subsec:spatial_temporal}
             
-            Li等人\cite{li2015traffic}根據地理位置將站點分群，
-            並以群為單位進行預測，
-            藉此減少模型的複雜度，
-            不過考慮到公共自行車系統的真實使用情境，
-            我們選擇預測單一站點的車流，
-            並利用分群結果計算車流量(flow)特徵來增強每個站點對彼此流量關係的理解。
-            我們使用3層的卷積層來讀取空間特徵，
-            並以每個站點的站點車輛數目(volume)以及車流量為輸入。
-            在每一層中，
-            這兩種輸入都會經過3個線性選擇模塊(linear choice block)，
-            分別是 (1) 卷積核大小(kernel size) (2) 最大或平均池化層(max/average pooling) (3) 激勵函數(activation function)，
-            在時段$t$第$i$站點的卷積層結果表示成$R_{i,t}$。
-            \xfig{fig:SAGAON}(C)部分採用跟STDN相似的結構，
-            由複數的長短期記憶層(LSTM layer)組成，
-            為了將不同時間尺度的腳踏車車流週期性納入考量，
-            每個長短期記憶層都會接收\xfig{fig:SAGAON}(A)前幾個時間段的輸出並加上\xfig{fig:SAGAON}(B)的額外特徵(天氣和興趣指數)來獲取空間及時間特徵。
-            在這裡我們使用注意力機制(attention mechanism)來評斷每個時間段對時序預測的影響，
-            用以捕捉近期車流週期性的細微差異。
+            不同於Li等人\cite{li2015traffic}根據地理位置將站點分群後，再以群為單位進行預測的主流方法，
+            我們認為預測單一站點的車流較符合公共自行車系統的使用情境，並利用分群結果計算車流量(flow)特徵增強每個站點對彼此流量關係的理解。
+            \xfig{fig:SAGAON}(a)中使用3層卷積層讀取空間特徵，並以每個站點的車輛數目(volume)和車流量做為輸入。
+            為減少搜尋架構的時間同時維持搜尋成果的準確率，我們採用Guo\cite{guo2020single}提出的單路徑one-shot神經網路架構搜尋，
+            在各卷積層中引入超級網路的元件(cell component)，增加可搜尋的模型架構數量，並藉均勻抽樣讓各架構在訓練超級網路時獲得同樣的訓練機會。
+            \xfig{fig:cell}為元件的內部設計，基於STDN的原有架構，我們在每個元件中建立3種選擇模塊(linear choice block)，
+            將不同的卷積核大小(kernel size)、最大或平均池化層(max/average pooling)和激勵函數(activation function)加入SAGAON的搜尋空間，
+            移除特定架構也是搜尋空間中的選擇之一。
+            為避免不同大小的矩陣發生無法進行計算的情況，經過卷積和池化後將使用零填充(zero padding)維持矩陣大小一致，讓後續的矩陣乘法順利進行。
+            車流量輸入在進行矩陣乘法前會再經過一次激勵函數，避免特徵值在卷積層的成長過於迅速。
+
+        \subsection{外部特徵}
+            \label{subsec:point_of_interest}
+
+            除車流量和站點車輛數目，外部因素也會影響民眾使用公共自行車的行為模式，
+            為此SAGAON採用紐約市天氣資訊和鄰近站點的興趣指數作為外部特徵，
+            和前述的卷積層輸出串接來獲取時間特徵，如\xfig{fig:SAGAON}(b)所示。
+            天氣資訊源於公開網站(\url{https://www.wunderground.com/})在2020年7月1日到2020年8月29日的觀測資料，包含溫度、降雨、溼度等資訊，
+            我們使用極值正規化(min-max normalization)處理各項特徵值。
+            興趣指數部分我們使用Google API地圖資訊，以站點為中心搜尋方圓200公尺內的興趣地點(interesting spot)，
+            利用笛卡爾座標系統(Cartesian coordinate system)將興趣地點的經緯度轉換成對應座標，
+            藉興趣地點所構成的城市區域視為一個平行四邊形(parallelogram)並定義出2種構成該區域的向量，
+            將對應的座標點放入劃分為同樣大小的$n \times n$的網格(grid)。
+            我們將所有的興趣地點分為10類，
+            分別為食物(food)、購物中心(mall)、商業(business)、醫院(hospital)、大眾傳輸(transportation)、
+            政府組織(government)、公園(park)、公寓(apartment)、娛樂(entertainment)和運動(sport)，
+            每個站點有10張不同種類的興趣點地圖(POI map)。
+            在計算出地圖座標上對應的評價總數(rating amount)總和值後，
+            我們使用極值正規    化避免各座標上的總和值差距過大：
+            \begin{equation}
+                {\mu_{i,x}^a}' = \frac{\mu_{i,x}^a - \mu_{min}}{\mu_{max} - \mu_{min}} \in [0,1].
+            \end{equation}
+            其中$\mu_{i,x}^a$為站點$i$、種類$a$在興趣點地圖座標$x$上的評價總數(rating amount)總和值。\\
+            接著評價總數會和平均評價(rating score)進行運算，得出各座標的興趣指數：
+            \begin{equation}
+                M_{i,x}^a = \sum_{q=1}^{\gamma} ({\mu_{i,x}^{a,q}}' \times \rho_{i,x}^{a,q}).
+            \end{equation}
+            其中$M_{i,x}^a$為站點$i$、種類$a$在興趣點地圖座標$x$的興趣指數，$\rho$為平均評價。
+
+        \subsection{時間特徵}
+
+            為獲取自行車車流的週期性，\xfig{fig:SAGAON}(c)部分採用與STDN相似的結構，由複數的長短期記憶層(LSTM layer)組成。
+            為考慮不同時間尺度的腳踏車車流週期性，並捕捉預測時間點前後的週期性變化，
+            SAGAON的長短期記憶層可分為短週期網路以及長週期網路，
+            接收\xfig{fig:SAGAON}(a)卷積層和\xfig{fig:SAGAON}(b)外部特徵對應時間段的輸出。
+            短週期網路以預測目標時段$t$數小時前的資訊做為輸入，讓模型學習短期內的車流和車輛數變化。
+            長週期網路的目的在於捕捉昨日同一時間或上周同一時間的時序特徵，
+            因此選擇預測日期前$P$天在時段$t$前後數小時的資訊作為輸入，
+            同時使用注意力機制(attention mechanism)計算每一天對時序預測的影響力權重，捕捉近期車流週期性的細微變化。
             我們使用的長短期記憶模型是Hochreiter\cite{10.1162/neco.1997.9.8.1735}所提出的原始版本，
-            $R_{i,t}$和$e_{i,t}$分別為站點$i$在時間段$t$的卷積結果與額外特徵，
-            $h_{i,t}$則代表長短期記憶模型的輸出結果。
             長短期記憶模型的公式如下：
             \begin{equation}
                 h_{i,t} = \text{LSTM}([R_{i,t};e_{i,t}],h_{i,t-1}).
             \end{equation}
+            其中$R_{i,t}$和$e_{i,t}$分別為站點$i$在時間段$t$的卷積結果與額外特徵，
+            $h_{i,t}$則代表長短期記憶模型的輸出結果。
 
-        \subsection{One-Shot NAS 及自適應退火基因演算法}
-            
-            \begin{figure}[htb]
-                \centering
-                \includegraphics[width=0.8\textwidth]{cell.pdf}
-                \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        元件與選擇模塊。
-                        站點車輛數特徵以及車流量特徵會經過三層元件，並在選擇模塊中隨機選擇不同的
-                        卷積核大小、池化層以及激勵函數。
-                        圖中的實線為固有的模型架構，虛線為經過隨機選擇的可能結果。
-                    }
-                }
-                \label{fig:cell}
-            \end{figure}
+        \subsection{自適應退火基因演算法}
 
-            為了減少搜尋架構的時間，
-            Guo\cite{guo2020single}提出了採用均勻抽樣的單路徑one-shot神經網路架構搜尋。
-            透過這個方法能夠減少搜尋時間，
-            同時維持搜尋成果的準確率。
-            \xfig{fig:cell}展示了元件(cell component)的內部狀況，
-            基於STDN的原有架構，
-            我們在每個超級網路的元件裡面建立了3個選擇模塊，
-            將不同的卷積核大小(kernel size)和激勵函數(activation function)加入SAGAON的搜尋空間，
-            並新增池化層(pooling layer)擴充原有的架構，
-            除了上述的選擇外，移除特定的架構也是搜尋空間中的一種選擇，藉此增加可搜尋的模型架構數量。
-            在SAGAON裡，
-            三種不同層級的元件被設置在處理空間特徵的\xfig{fig:SAGAON}(A)部分。
-            為了避免不同大小的矩陣發生無法進行計算的情況，
-            經過卷積和池化後將會使用零填充(zero padding)維持矩陣大小的一致性，
-            保證接下來的矩陣乘法可以順利運行。
-            車流量輸入的部分，
-            在進行矩陣乘法之前會先經過S型函數(sigmoid function)，
-            避免車流量的特徵值成長過於迅速。
-            在產生超級網路之後，
-            我們使用了結合基因演算法和模擬退火演算法的ASAGA搜尋最佳神經網路架構，
+            在訓練超級網路後，我們使用結合基因演算法和模擬退火演算法的ASAGA搜尋最佳神經網路架構，
             虛擬碼如\xalg{alg:ASAGA}所示，
             交配操作子(crossover operator)藉由隨機交換兩個親代的片段來產生子代架構，
             突變操作子(mutation operator)則根據低的突變率增加子代的多樣性。
@@ -604,32 +616,6 @@
                 }
                 \label{fig:ASAGA}
             \end{figure}
-
-        \subsection{興趣指數}
-            \label{subsec:point_of_interest}
-            除了車流量和站點車輛數目，
-            SAGAON也採用了鄰近站點的興趣指數作為輸入。
-            我們使用Google API的地圖資訊，
-            以站點為中心搜尋方圓200公尺內的興趣地點(interesting spot)，
-            利用笛卡爾座標系統(Cartesian coordinate system)將興趣地點的經緯度轉換成對應的座標，
-            藉由興趣地點所構成的城市區域視為一個平行四邊形(parallelogram)並定義出2種構成該區域的向量，
-            將對應的座標點放入劃分為同樣大小的$n \times n$的網格(grid)。
-            我們將所有的興趣地點分為10類，
-            分別為食物(food)、購物中心(mall)、商業(business)、醫院(hospital)、大眾傳輸(transportation)、政府組織(government)、公園(park)、公寓(apartment)、娛樂(entertainment)和運動(sport)。
-            每個站點有10張不同種類的興趣點地圖(POI map)，
-            表示成$M_i \in \mathbb{R}_i^{10 \times n\times n}$，
-            每張地圖代表特定的種類$a$。
-            $\mu_{i,x}^a$為站點$i$、種類$a$在興趣點地圖座標$x$上的評價總數(rating amount)總和值。
-            因應不同座標上評價總數值可能存在極大的差距，
-            我們使用極值正規化(min-max normalization)來處理評價總數：
-            \begin{equation}
-                {\mu_{i,x}^a}' = \frac{\mu_{i,x}^a - \mu_{min}}{\mu_{max} - \mu_{min}} \in [0,1].
-            \end{equation}
-            評價總數經過正規化之後會和$\rho$進行運算，
-            站點$i$、種類$a$在興趣點地圖座標$x$的興趣指數公式為：
-            \begin{equation}
-                M_{i,x}^a = \sum_{q=1}^{\gamma} ({\mu_{i,x}^{a,q}}' \times \rho_{i,x}^{a,q}).
-            \end{equation}
 
         \subsection{最佳化模型超參數}
             超參數是深度學習一大重要設置，
@@ -703,11 +689,8 @@
             我們藉由總流量($\lvert$流入量$\rvert + \lvert$流出量$\rvert$)篩選出前100個流量最大的站點作為預測目標，
             關係密切的站點會被劃分到同一個群組，
             作為車流量特徵的計算依據。
-            我們還添加了額外特徵如天氣和興趣指數來增加準確率。
-            天氣資訊使用公開網站(\url{https://www.wunderground.com/})
-            於2020年7月1日到2020年8月29日的觀測資料，
-            每筆紀錄包含了紐約的溫度、降雨、濕度等資訊。
-            我們使用極值正規化來處理這些特徵值並在預測後進行逆正規化(denormalize)。
+            我們還添加了額外特徵如天氣和興趣指數來增加準確率，
+            並使用極值正規化來處理這些特徵值並在預測後進行逆正規化(denormalize)。
 
         \subsection{神經網路架構搜尋前處理}
 
