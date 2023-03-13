@@ -1,4 +1,4 @@
-\documentclass[a4paper,14pt]{extarticle}
+\documentclass[a4paper,12pt]{extarticle}
 
 \usepackage{indentfirst}
 
@@ -20,7 +20,9 @@
 \usepackage{adjustbox}
 \usepackage{makecell}
 \usepackage{multirow}
+\usepackage{geometry}
 
+\geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1.5cm}
 \setlength{\parindent}{2em}
 \captionsetup[figure]{labelformat={default},name={圖}}
 \captionsetup[table]{labelformat={default},name={表}}
@@ -95,6 +97,7 @@
 \begin{document}
     \printcover
 
+    \renewcommand{\baselinestretch}{1.25}
     \section{摘要}
         近年隨著環保意識和智慧城市的影響，
         公共自行車系統(bike-sharing system ; BSS)因為其環保和便利的特性，
@@ -105,9 +108,7 @@
         將會降低使用者使用意願。
         本專案提出超啟發式演算法(adaptive simulated annealing genetic algorithm ; ASAGA)作為 one-shot 神經網路架構搜尋(neural architecture search ; NAS)的搜尋策略，
         搭配上以混合為基礎的超參數(hyperparameter)優化。
-        本專題原計畫利用台灣微笑單車Youbike2.0的資料進行實驗，
-        因資料取得較不易以及有缺失的情況，
-        我們改用了紐約市公共自行車系統資料，
+        本專題計畫利用台灣微笑單車Youbike2.0的資料進行實驗，
         建立高效深度學習模型用以預測各站點狀況，
         並期望實際應用於本地高雄市公共自行車系統以解決各站點車輛不平衡之問題。
         期望以預測結果改善現有公共自行車的服務品質，
@@ -161,7 +162,7 @@
       
         近年來由於深度學習在電腦視覺領域獲得突破性的發展\cite{8114708}，
         將深度學習應用於自行車站點車輛數預測成為本專案的研究重點。
-        目前所被大眾熟知的深度學習模型包括VGG16\cite{simonyan2014very}、ResNets\cite{he2016deep}等皆為卷積神經網路(convolutional neural network ; CNN)，
+        目前所被大眾熟知的深度學習模型包括Simonyan等人提出的視覺幾何群(visual geometry group 16 ; VGG16)\cite{simonyan2014very}和He等人設計的殘差網路(residual learning network ; ResNets)\cite{he2016deep}等皆為卷積神經網路(convolutional neural network ; CNN)，
         其處理的資料多為圖像，
         然而不同於許多影像辨識的資料集，
         處理公共自行車系統資料時不只需要考慮各站點之間所蘊含的空間特徵，
@@ -186,7 +187,7 @@
     \newpage
 
     \section{文獻回顧與探討}
-        \subsection{交通流預測模型相關研究}
+        \subsection{腳踏車共享系統與交通流預測模型相關研究}
             
             交通流(traffic flow)擁有高度的時序及空間之關聯性質，
             卷積長短期混合模型(CNN-LSTM hybrid model)因而成為眾多研究所使用的預測方法。
@@ -205,8 +206,6 @@
             將卷積神經網路及長短期記憶模型分離出來，
             發現單獨使用長短期記憶模型比起卷積長短期記憶混合模型更加準確，
             推斷卷積神經網路在某些狀況下反而會拖累整體表現。
-    
-        \subsection{腳踏車共享系統之站點預測相關研究}
             
             現今的腳踏車共享系統大多具有固定站點的特性，
             在與系統相關的應用問題中，
@@ -365,6 +364,41 @@
             然而基因演算法容易過早收斂陷入區域最佳解，
             若能發展一個更為優異的解空間資訊引導用的超啟發演算法應用於神經網路架構搜尋，
             將能此領域帶來劃時代的變革。
+            \begin{table}[htb]
+                \centering
+                \caption{
+                    重要參考文獻
+                }
+                \begin{NiceTabular}{|m[c]{8em}|m[c]{7em}|m[c]{18em}|c|}
+                    \CodeBefore
+                        \rowcolor[HTML]{C0C0C0}{1}
+                    \Body
+                        \hline
+                        方法 & 方法簡稱 & 方法簡介 & 時間 \\
+                        \hline
+                        \Block{2-1}{交通流預測模型} & multivariate CNN-LSTM\cite{NARMADHA2021} & 混合多層一維卷積層(CNN layers)及長短期記憶網路的混合模型來，獲得比起傳統時序模型更加準確的預測結果。 & \\
+                        \cline{2-4}
+                        & Bi-directional LSTM\cite{8171119} & 使用雙向的長短期神經網路攫取更多車流資料中的時域相似度，解決單方向長短期神經模型容易忽略時間相關性之問題。 & \\
+                        \hline
+                        \Block{2-1}{腳踏車共享系統之站點預測} & POI\cite{9093851}\cite{8621918} & 利用興趣指度強調站點附近特徵，提高空間資訊在預測模型中的效果。 & \\
+                        \cline{2-4}
+                        & STDN\cite{yao2019revisiting} & 同時考量每個站點之間的空間資訊與時間連續關係，加上注意力與車流閥門機制來預測各站點自行車使用情況。 & \\
+                        \hline
+                        \Block{2-1}{神經網路架構搜尋} & NAS\cite{zoph2016neural} & 用強化學習與獎勵機制訓練控制器，並根據回饋來更新控制器，從搜尋空間中找出適用的神經網路架構。 & \\
+                        \cline{2-4}
+                        & EvoCNN\cite{8712430} & 以標準差及平均值為代表性資料，利用演化式搜尋減少所需的運算資源與時間。 & \\
+                        \hline
+                        \Block{2-1}{One-Shot NAS及搜尋策略} & SMASH\cite{brock2017smash} & 利用超級網路和常規訓練兩者分別所得權重之模型在預測結果上的高度相關性，高效率地找出優秀的神經網路架構。 & \\
+                        \cline{2-4}
+                        & SPOS\cite{guo2020single} & 採用均勻抽樣讓所有子架構獲得平等的訓練，搭配演化式計算評估架構，減少訓練所需的時間。 & \\
+                        \hline
+                        \Block{2-1}{自動化機器學習} & AutoML-Zero\cite{pmlr-v119-real20a} & 將機器學習程式碼以簡易的數學符號抽象化，加上代理任務與遷徙機制，能有效演化出高準確率的神經網路模型。 & \\
+                        \cline{2-4}
+                        & LEAF\cite{10.1145/3321707.3321721} & 共同演化深度變化結構神經進化配合帕雷托排序的多目標設計，能夠自動找出所需的神經網路模型。 & \\
+                        \hline
+                    \end{NiceTabular}
+                \label{tab:related_work}
+            \end{table}
             從深度學習（監督式學習）、超啟發式演算法（非監督式學習）及智慧單車共享系統，
             我們歸納出幾個與本研究計畫相關的重點研究議題：
             \begin{itemize}
@@ -381,30 +415,6 @@
             本計畫將嘗試發展一個混合式的【高效超啟發式演算法】，
             進一步發展一個【準確的神經網路架構搜尋框架】，
             應用於共享單車系統達到透過人工智慧驅動交通建設發展的目標。
-            \begin{table}[htbp]
-                \begin{NiceTabular}{|m[c]{8em}|m[c]{7em}|m[c]{18em}|c|}
-                    \CodeBefore
-                        \rowcolor[HTML]{C0C0C0}{1}
-                        \rowlistcolors{2}{white, gray!25}[restart]
-                    \Body
-                        \hline
-                        方法 & 方法簡稱 & 方法簡介 & 時間 \\
-                        \hline
-                        \Block{2-1}{交通流預測模型} & multivariate CNN-LSTM\cite{NARMADHA2021} & 混合多層一維卷積層(CNN layers)及長短期記憶網路的混合模型來，獲得比起傳統時序模型更加準確的預測結果。 & \\
-                        & Bi-directional LSTM\cite{8171119} & 使用雙向的長短期神經網路攫取更多車流資料中的時域相似度，解決單方向長短期神經模型容易忽略時間相關性之問題。 & \\
-                        \hline
-                        \Block{2-1}{腳踏車共享系統之站點預測} & POI\cite{9093851}\cite{8621918} & 利用興趣指度強調站點附近特徵，提高空間資訊在預測模型中的效果。 & \\
-                        & STDN\cite{yao2019revisiting} & 同時考量每個站點之間的空間資訊與時間連續關係，加上注意力與車流閥門機制來預測各站點自行車使用情況。 & \\
-                        \hline
-                        \Block{2-1}{神經網路架構搜尋} & NAS\cite{zoph2016neural} & 用強化學習與獎勵機制訓練控制器，並根據回饋來更新控制器，從搜尋空間中找出適用的神經網路架構。 & \\
-                        & EvoCNN\cite{8712430} & 以標準差及平均值為代表性資料，利用演化式搜尋減少所需的運算資源與時間。 & \\
-                        \Block{2-1}{One-Shot NAS及搜尋策略} & SMASH\cite{brock2017smash} & 利用超級網路和常規訓練兩者分別所得權重之模型在預測結果上的高度相關性，高效率地找出優秀的神經網路架構。 & \\
-                        & SPOS\cite{guo2020single} & 採用均勻抽樣讓所有子架構獲得平等的訓練，搭配演化式計算評估架構，減少訓練所需的時間。 & \\
-                        \Block{2-1}{自動化機器學習} & AutoML-Zero\cite{pmlr-v119-real20a} & 將機器學習程式碼以簡易的數學符號抽象化，加上代理任務與遷徙機制，能有效演化出高準確率的神經網路模型。 & \\
-                        & LEAF\cite{10.1145/3321707.3321721} & 共同演化深度變化結構神經進化配合帕雷托排序的多目標設計，能夠自動找出所需的神經網路模型。 & \\
-                    \end{NiceTabular}
-                \label{tab:related_work}
-            \end{table}
         
     \newpage
 
@@ -413,9 +423,7 @@
         \begin{table}[tbh]
         \setlength{\belowcaptionskip}{12pt}
         \caption{
-            {\fontsize{12pt}{10pt}\selectfont
-                \textbf{符號表}
-            }
+            符號表
         }
         \centering
         \begin{NiceTabular}{|l|l|}
@@ -447,16 +455,14 @@
         \begin{figure}[h]
             \includegraphics[width=\textwidth]{SAGAON.png}
             \caption{
-                {\fontsize{12pt}{10pt}\selectfont
-                    SAGAON的架構。
-                    (a) 站點車輛數目跟車流量資料會經過數層卷積層。
-                    one-shot NAS會同時訓練多個包含不同卷積核大小、池化層和激勵函數的選擇模塊。
-                    (b) 採用天氣和興趣指數等額外特徵，
-                    該模型可以學習更多影響到公共自行車系統行為模式的外部因素。
-                    (c) 使用長短期記憶模型來捕捉腳踏車車流的週期性。
-                    $P$代表長短期記憶模型所考慮的天數，
-                    而$t$則是代表預測目標的時段(timeslot)。
-                }
+                SAGAON的架構。
+                (a) 站點車輛數目跟車流量資料會經過數層卷積層。
+                one-shot NAS會同時訓練多個包含不同卷積核大小、池化層和激勵函數的選擇模塊。
+                (b) 採用天氣和興趣指數等額外特徵，
+                該模型可以學習更多影響到公共自行車系統行為模式的外部因素。
+                (c) 使用長短期記憶模型來捕捉腳踏車車流的週期性。
+                $P$代表長短期記憶模型所考慮的天數，
+                而$t$則是代表預測目標的時段(timeslot)。
             }
             \label{fig:SAGAON}
         \end{figure}
@@ -475,12 +481,10 @@
             \centering
             \includegraphics[width=0.8\textwidth]{cell.pdf}
             \caption{
-                {\fontsize{12pt}{10pt}\selectfont
-                    元件與選擇模塊。
-                    站點車輛數特徵以及車流量特徵會經過三層元件，並在選擇模塊中隨機選擇不同的
-                    卷積核大小、池化層以及激勵函數。
-                    圖中的實線為固有的模型架構，虛線為經過隨機選擇的可能結果。
-                }
+                元件與選擇模塊。
+                站點車輛數特徵以及車流量特徵會經過三層元件，並在選擇模塊中隨機選擇不同的
+                卷積核大小、池化層以及激勵函數。
+                圖中的實線為固有的模型架構，虛線為經過隨機選擇的可能結果。
             }
             \label{fig:cell}
         \end{figure}
@@ -565,59 +569,66 @@
 
                 \begin{algorithm}
                     \caption{
-                        {\fontsize{12pt}{10pt}\selectfont
-                            ASAGA
-                        }
+                        ASAGA
                         \label{alg:ASAGA}
                     }
-                    {\fontsize{14pt}{12pt}\selectfont
-                        \begin{algorithmic}[1]
-                            \Require Supernet $S$
-                            \Ensure Best Architecture $B$
-                            \State Initialize: Generation Size $G$, Initial Temperature $T$,
-                            Final Temperature $T_{min}$, Annealing Ratio $\psi$, Architecture Population $P$,
-                            Offspring in genetic algorithm $O$.
-                            \State $P \gets random(S)$
-                            \State $B \gets P_{best}$
-                            \While{$G \neq 0 $ AND $T > T_{min}$}
-                                \For{\texttt{n=0 to $\frac{N}{2}$}}
-                                    \State Select Two Architecture: $p \gets random(P)$
-                                    \State $O \gets crossover(p)$
-                                    \State $O \gets mutation(O)$
-                                    \For{\texttt{i=1 to 2}}
-                                        \State $\delta \gets evaluate(p[i]) - evaluate(O[i])$
-                                        \If{$\delta > 0$}
-                                            \State $p[i] \gets O[i]$
-                                        \ElsIf{$rand < e^{\frac{\delta}{T}}$}
-                                            \State $p[i] \gets O[i]$
-                                        \EndIf
-                                    \EndFor
-                                \State $P \gets update(P, p)$
+                    \begin{algorithmic}[1]
+                        \Require Supernet $S$
+                        \Ensure Best Architecture $B$
+                        \State Initialize: Generation Size $G$, Initial Temperature $T$,
+                        Final Temperature $T_{min}$, Annealing Ratio $\psi$, Architecture Population $P$,
+                        Offspring in genetic algorithm $O$.
+                        \State $P \gets random(S)$
+                        \State $B \gets P_{best}$
+                        \While{$G \neq 0 $ AND $T > T_{min}$}
+                            \For{\texttt{n=0 to $\frac{N}{2}$}}
+                                \State Select Two Architecture: $p \gets random(P)$
+                                \State $O \gets crossover(p)$
+                                \State $O \gets mutation(O)$
+                                \For{\texttt{i=1 to 2}}
+                                    \State $\delta \gets evaluate(p[i]) - evaluate(O[i])$
+                                    \If{$\delta > 0$}
+                                        \State $p[i] \gets O[i]$
+                                    \ElsIf{$rand < e^{\frac{\delta}{T}}$}
+                                        \State $p[i] \gets O[i]$
+                                    \EndIf
                                 \EndFor
-                            \If{$evaluate(B) > evaluate(P_{best})$}
-                                \State $B \gets P_{best}$
-                            \EndIf
-                            \State $T \gets T*\psi$
-                            \State $G \gets G - 1$
-                            \EndWhile \\
-                            \Return $B$
-                        \end{algorithmic}
-                    }
+                            \State $P \gets update(P, p)$
+                            \EndFor
+                        \If{$evaluate(B) > evaluate(P_{best})$}
+                            \State $B \gets P_{best}$
+                        \EndIf
+                        \State $T \gets T*\psi$
+                        \State $G \gets G - 1$
+                        \EndWhile \\
+                        \Return $B$
+                    \end{algorithmic}
                 \end{algorithm}
 
             \begin{figure}[htb]
                 \includegraphics[width=\textwidth]{flow.pdf}
                 \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        ASAGA的運作流程。
-                        在每一世代中ASAGA會從訓練完成的超級網路隨機選擇架構進行評估，
-                        並在最後一個世代結束時搜尋出表現最佳的模型架構。
-                    }
+                    ASAGA的運作流程。
+                    在每一世代中ASAGA會從訓練完成的超級網路隨機選擇架構進行評估，
+                    並在最後一個世代結束時搜尋出表現最佳的模型架構。
                 }
                 \label{fig:ASAGA}
             \end{figure}
 
         \subsection{最佳化模型超參數}
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.725\textwidth]{SAGA_scheme.png}
+                \caption{
+                    自適應模擬退火基因演算法尋找最佳超參數的完整流程。
+                }
+                \label{fig:SAGA_scheme}
+            \end{figure}
+            \xfig{fig:SAGA_scheme}是自適應模擬退火基因演算法作用於尋找最佳超參數的完整流程。
+            在一開始該演算法會隨機產生一個新的群集以進行交配與突變的操作，
+            並在評價後用得到的適應度進行模擬退火篩選(SA-selection)，
+            增加搜尋空間的彈性，
+            避免落入區域最佳解之窠臼。
             超參數是深度學習一大重要設置，
             可大幅影響最終的訓練結果。
             然而我們無法事先得知與當前訓練資料最匹配的超參數組合，
@@ -630,49 +641,26 @@
             嘗試在有限的資源條件下找出最佳的適應解。
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=\textwidth]{crossover.pdf}
+                \includegraphics[width=0.725\textwidth]{crossover.pdf}
                 \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        交配運算子示例。
-                        本專案使用多點(plural-points)交配運算，
-                        在每次交配時隨機選出多個交配點(crossover point)來進行基因交換。
-                        在此範例中被選定的交配點用藍色區塊來表示。
-                    }
+                    交配運算子示例。
+                    本專案使用多點(plural-points)交配運算，
+                    在每次交配時隨機選出多個交配點(crossover point)來進行基因交換。
+                    在此範例中被選定的交配點用藍色區塊來表示。
                 }
                 \label{fig:crossover}
             \end{figure}
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=\textwidth]{mutation.pdf}
+                \includegraphics[width=0.725\textwidth]{mutation.pdf}
                 \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        突變運算子示例。
-                        此專案採用多點突變，
-                        每次進行突變操作時隨機選出多個突變點進行布林(Boolean)反向運算。
-                        在此範例中被選定的突變點用淺綠色來示意。
-                    }
+                    突變運算子示例。
+                    此專案採用多點突變，
+                    每次進行突變操作時隨機選出多個突變點進行布林(Boolean)反向運算。
+                    在此範例中被選定的突變點用淺綠色來示意。
                 }
                 \label{fig:mutation}
             \end{figure}
-
-            \xfig{fig:SAGA_scheme}是自適應模擬退火基因演算法作用於尋找最佳超參數的完整流程。
-            在一開始該演算法會隨機產生一個新的群集以進行交配與突變的操作，
-            並在評價後用得到的適應度進行模擬退火篩選(SA-selection)，
-            增加搜尋空間的彈性，
-            避免落入區域最佳解之窠臼。
-
-            \begin{figure}[!htb]
-                \centering
-                \includegraphics[width=0.725\textwidth]{SAGA_scheme.png}
-                \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        自適應模擬退火基因演算法尋找最佳超參數的完整流程。
-                    }
-                }
-                \label{fig:SAGA_scheme}
-            \end{figure}
-            
-
     \newpage
 
     \section{實驗}
@@ -769,11 +757,9 @@
                     \xfig{fig:chromosome_sheme}是由STDN超參數所構成的染色體示意圖。
                     \begin{figure}[htbp]
                         \centering
-                        \includegraphics[width=\textwidth]{chromosome_sheme.png}
+                        \includegraphics[width=0.725\textwidth]{chromosome_sheme.png}
                         \caption{
-                            {\fontsize{12pt}{10pt}\selectfont
-                                STDN參數轉換成適用於該框架之染色體之預覽圖。
-                            }
+                            STDN參數轉換成適用於該框架之染色體之預覽圖。
                         }
                         \label{fig:chromosome_sheme}
                     \end{figure}
@@ -798,9 +784,7 @@
 
                     \begin{table}[htbp]
                         \caption{
-                            {\fontsize{12pt}{10pt}\selectfont
-                                超參數範圍
-                            }
+                            超參數搜尋範圍
                         }
                         \centering
                         \begin{NiceTabular}{|c|c|c|}
@@ -835,31 +819,27 @@
                 均方根誤差跟平均絕對百分比誤差(mean absolute percentage error ; MAPE)在測試資料集上皆為最低。
                 \begin{table}[htb]
                     \caption{
-                        {\fontsize{12pt}{10pt}\selectfont
-                            基線實驗和SAGAON之間的比較
-                        }
+                        基線實驗和SAGAON之間的比較
                     }
                     \centering
-                    \newcommand{\z}{\phantom{0}}
-                    \resizebox{\columnwidth}{!}{
-                        \begin{NiceTabular}{|c|r|r|r|r|}
+                        \begin{NiceTabular}{|m[c]{10em}|m[c]{5em}|m[c]{5em}|m[c]{5em}|m[c]{5em}|}
                             \CodeBefore
                                 \rowcolor{lightgray}{8}
                             \Body
                                 \hline
-                                &\multicolumn{2}{c}{Start}& \multicolumn{2}{c}{End}\\[2pt]
+                                & \Block{1-2}{Start} &  & \Block{1-2}{End} \\
                                 \hline
-                                Method &  \multicolumn{1}{c}{RMSE$\ \downarrow$} &  \multicolumn{1}{c}{MAPE$\ \downarrow$} & \multicolumn{1}{c}{RMSE$\ \downarrow$}& \multicolumn{1}{c}{MAPE$\ \downarrow$}  \\
+                                Method & RMSE$\ \downarrow$ & MAPE$\ \downarrow$ & RMSE$\ \downarrow$& MAPE$\ \downarrow$ \\
                                 \hline
                                 ARIMA & 11.43$\pm$0.00 & 73.89$\pm$0.00 & 11.78$\pm$0.00 & 75.99$\pm$0.00 \\ 
-                                HA & \z8.56$\pm$0.00 & 67.24$\pm$0.00 & 8.57$\pm$0.00 & 67.51$\pm$0.00 \\ 
-                                LSTM & \z2.97$\pm$0.73 & 17.66$\pm$0.29 & 4.13$\pm$0.12 & 25.59$\pm$0.74\\
-                                Conv-LSTM & \z2.13$\pm$0.31 & 11.11$\pm$1.23 & 3.36$\pm$0.26 & 19.88$\pm$0.44 \\
-                                STDN & \z2.07$\pm$0.23 & 10.83$\pm$0.80 & 3.33$\pm$0.16 & 20.23$\pm$0.90 \\
+                                HA & 8.56$\pm$0.00 & 67.24$\pm$0.00 & 8.57$\pm$0.00 & 67.51$\pm$0.00 \\ 
+                                LSTM & 2.97$\pm$0.73 & 17.66$\pm$0.29 & 4.13$\pm$0.12 & 25.59$\pm$0.74\\
+                                Conv-LSTM & 2.13$\pm$0.31 & 11.11$\pm$1.23 & 3.36$\pm$0.26 & 19.88$\pm$0.44 \\
+                                STDN & 2.07$\pm$0.23 & 10.83$\pm$0.80 & 3.33$\pm$0.16 & 20.23$\pm$0.90 \\
                                 \hline
                                 \textbf{SAGAON} & \textbf{2.07$\pm$0.03} & \textbf{10.81$\pm$0.12} & \textbf{3.31$\pm$0.06} & \textbf{19.10$\pm$0.17} \\
                                 \hline
-                        \end{NiceTabular}}
+                        \end{NiceTabular}
                     \label{tab:comparison}    
                 \end{table}
                 
@@ -887,25 +867,19 @@
                         \centering
                         \includegraphics[width=\linewidth]{station_level_RMSE.pdf}
                         \caption{
-                            {\fontsize{12pt}{10pt}\selectfont
-                                Station-level RMSE
-                            }
+                            Station-level RMSE
                         }
                     \end{subfigure}%
                     \hfill
                     \begin{subfigure}{.5\columnwidth}
                         \centering
                         \includegraphics[width=\linewidth]{station_level_MAPE.pdf}
-                        \caption{
-                            {\fontsize{12pt}{10pt}\selectfont    
-                                Station-level MAPE
-                            }
+                        \caption{ 
+                            Station-level MAPE
                         }
                     \end{subfigure}%
                     \caption{
-                        {\fontsize{12pt}{10pt}\selectfont
-                            SAGAON對比不同的基線實驗模型
-                        }
+                        SAGAON對比不同的基線實驗模型
                     }
                     \label{fig:comparison}
                 \end{figure}
@@ -922,23 +896,22 @@
                 無需使用者先行理解該框架的背景知識即可運用。
                 \begin{table}[htbp]
                     \caption{
-                        {\fontsize{12pt}{10pt}\selectfont
-                            預設參數和採用了超啟發演算法搜尋策略之間的比較
-                        }
+                        預設參數和採用了超啟發演算法搜尋策略之間的比較
                     }
-                    \begin{NiceTabular}{|c|r|r|r|r|}
+                    \centering
+                    \begin{NiceTabular}{|m[c]{10em}|m[c]{6em}|m[c]{6em}|m[c]{6em}|m[c]{6em}|}
                         \CodeBefore
                             \rowcolor{lightgray}{5}
                         \Body
                             \hline
-                            & \multicolumn{2}{c}{Start} & \multicolumn{2}{c}{End} \\[2pt]
+                            & \Block{1-2}{Start} & & \Block{1-2}{End} \\
                             \hline
-                            Method & \multicolumn{1}{c}{RMSE$\ \downarrow$} &  \multicolumn{1}{c}{MAPE$\ \downarrow$} & \multicolumn{1}{c}{RMSE$\ \downarrow$}& \multicolumn{1}{c}{MAPE$\ \downarrow$}  \\
+                            Method & RMSE$\ \downarrow$ & MAPE$\ \downarrow$ & RMSE$\ \downarrow$ & MAPE$\ \downarrow$ \\
                             \hline
                             Default & 8.85$\pm$0.11 & 21.84$\pm$0.36 & 8.15$\pm$0.15 & 20.87$\pm$0.39 \\ 
                             Genetic Algorithm & 8.83$\pm$0.06 & 21.60$\pm$0.21 & 8.14$\pm$0.03 & 20.42$\pm$0.18 \\ 
                             \hline
-                            \makecell[c]{\textbf{Simulated Annealing} \\ \textbf{Genetic Algorithm}} & \textbf{8.81$\pm$0.04} & \textbf{21.63$\pm$0.16} & \textbf{8.15$\pm$0.07} & \textbf{20.66$\pm$0.04} \\
+                            \textbf{Simulated Annealing Genetic Algorithm} & \textbf{8.81$\pm$0.04} & \textbf{21.63$\pm$0.16} & \textbf{8.15$\pm$0.07} & \textbf{20.66$\pm$0.04} \\
                             \hline
                     \end{NiceTabular}
                     \label{tab:hyper_comparison}    
@@ -974,9 +947,7 @@
                 \centering
                 \includegraphics[width=0.8\textwidth]{webpage.png}
                 \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        網頁整體框架。
-                    }
+                    網頁整體框架。
                 }
                 \label{fig:webpage}
             \end{figure}
@@ -996,29 +967,30 @@
                 \centering
                 \includegraphics[width=0.35\textwidth]{asynchronous.png}
                 \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        同步請求與非同步請求的差別。
-                    }
+                    同步請求與非同步請求的差別。
                 }
                 \label{fig:asynchronous}
             \end{figure}
 
-            \xfig{fig:web-view}是網頁的主要介面，右側面板為當前天氣狀況，左側則是100個目標站點在
-            當前時間點的模型預測狀況以及真實站點車輛數。每次更新的時間為15分鐘一次，為快速呈現模型成果，
+            \xfig{fig:web-view}是網頁的主要介面，
+            右側面板為當前天氣狀況，
+            左側則是100個目標站點在當前時間點的模型預測狀況以及真實站點車輛數。
+            每次更新的時間為15分鐘一次，
+            為快速呈現模型成果，
             我們每三秒即更新一次介面。
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=\textwidth]{nstc_adjust_image.png}
                 \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        紐約市站點需求預測地圖。
-                    }
+                    紐約市站點需求預測地圖。
                 }
                 \label{fig:web-view}
             \end{figure}
             從使用者介面上可以看到三種顏色的區分，
-            綠色代表相當準確，藍色為尚可接受，紅色則是預測結果和實際數值有落差，
-            判斷站點不準確度的公式如下 \ref{acc_equ}。
+            綠色代表相當準確，
+            藍色為尚可接受，
+            紅色則是預測結果和實際數值有落差，
+            在判斷站點不準確度時使用\xeq{acc_equ}。
             $S_p$是在此時間區間開始時模型預測的站點車輛數，
             $E_p$是時間區間結束時的預測結果。
             $S_t$和$E_t$則分別代表在此時間區間開始及結束的真實站點車輛數。
@@ -1027,29 +999,33 @@
             其餘裝快接為可接受範圍，
             呈現藍色。
             \begin{equation}
-            \label{acc_equ}
-            \text{$inaccuracy$} = \frac{|S_p-S_t|+|E_p-E_t|}{S_t+E_t}.
+                \label{acc_equ}
+                \text{$inaccuracy$} = \frac{|S_p-S_t|+|E_p-E_t|}{S_t+E_t}.
             \end{equation}
 
             \[
             colors =
             \begin{cases}
-            red & \text{if $inaccuracy>0.2$} \\
-            green & \text{if $inaccuracy<0.06$} \\
-            blue & \text{else} 
+                red & \text{if $inaccuracy>0.2$} \\
+                green & \text{if $inaccuracy<0.06$} \\
+                blue & \text{else} 
             \end{cases}
             \]
 
-            \xfig{fig:details}中間的面板呈現了當日預測狀況的折線圖，從折線圖每日的走向可以發現，當到尖峰時刻
-            尤其是傍晚下班時，模型的預測準確度下降了許多，原因是因為隨著用量突然增加，模型在預測上也會有相對更高的誤差
-            。我們也將不準確次數前10多的站點挑出來，以利日後可以針對站點來了解主要造成原因為何，以及我們可以如何改善。
+            \xfig{fig:details}中間的面板呈現了當日預測狀況的折線圖，
+            從折線圖每日的走向可以發現，
+            當到尖峰時刻尤其是傍晚下班時，
+            模型的預測準確度下降了許多，
+            原因是因為隨著用量突然增加，
+            模型在預測上也會有相對更高的誤差。
+            我們也將不準確次數前10多的站點挑出來，
+            以利日後可以針對站點來了解主要造成原因為何，
+            以及我們可以如何改善。
             \begin{figure}[htbp]
                 \centering
                 \includegraphics[width=\textwidth]{details.png}
                 \caption{
-                    {\fontsize{12pt}{10pt}\selectfont
-                        當日預測情況以及每月預測最不準的站點。
-                    }
+                    當日預測情況以及每月預測最不準的站點。
                 }
                 \label{fig:details}
             \end{figure}
