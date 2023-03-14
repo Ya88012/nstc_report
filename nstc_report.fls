@@ -1161,6 +1161,12 @@ INPUT station_level_RMSE.pdf
 INPUT .\station_level_MAPE.pdf
 INPUT .\station_level_MAPE.pdf
 INPUT station_level_MAPE.pdf
+INPUT .\opt_RMSE.pdf
+INPUT .\opt_RMSE.pdf
+INPUT opt_RMSE.pdf
+INPUT .\opt_MAPE.pdf
+INPUT .\opt_MAPE.pdf
+INPUT opt_MAPE.pdf
 INPUT .\webpage.png
 INPUT .\webpage.png
 INPUT webpage.png

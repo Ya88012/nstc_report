@@ -376,29 +376,30 @@
                         \hline
                         方法 & 方法簡稱 & 方法簡介 & 時間 \\
                         \hline
-                        \Block{2-1}{交通流預測模型} & multivariate CNN-LSTM\cite{NARMADHA2021} & 混合多層一維卷積層(CNN layers)及長短期記憶網路的混合模型來，獲得比起傳統時序模型更加準確的預測結果。 & \\
+                        \Block{2-1}{交通流預測模型} & multivariate CNN-LSTM\cite{NARMADHA2021} & 混合多層一維卷積層(CNN layers)及長短期記憶網路的混合模型來，獲得比起傳統時序模型更加準確的預測結果。 & 2021 \\
                         \cline{2-4}
-                        & Bi-directional LSTM\cite{8171119} & 使用雙向的長短期神經網路攫取更多車流資料中的時域相似度，解決單方向長短期神經模型容易忽略時間相關性之問題。 & \\
+                        & Bi-directional LSTM\cite{8171119} & 使用雙向的長短期神經網路攫取更多車流資料中的時域相似度，解決單方向長短期神經模型容易忽略時間相關性之問題。 & 2017 \\
                         \hline
-                        \Block{2-1}{腳踏車共享系統之站點預測} & POI\cite{9093851}\cite{8621918} & 利用興趣指度強調站點附近特徵，提高空間資訊在預測模型中的效果。 & \\
+                        \Block{2-1}{腳踏車共享系統之站點預測} & POI\cite{9093851}\cite{8621918} & 利用興趣指度強調站點附近特徵，提高空間資訊在預測模型中的效果。 & 2018 / 2020 \\
                         \cline{2-4}
-                        & STDN\cite{yao2019revisiting} & 同時考量每個站點之間的空間資訊與時間連續關係，加上注意力與車流閥門機制來預測各站點自行車使用情況。 & \\
+                        & STDN\cite{yao2019revisiting} & 同時考量每個站點之間的空間資訊與時間連續關係，加上注意力與車流閥門機制來預測各站點自行車使用情況。 & 2019 \\
                         \hline
-                        \Block{2-1}{神經網路架構搜尋} & NAS\cite{zoph2016neural} & 用強化學習與獎勵機制訓練控制器，並根據回饋來更新控制器，從搜尋空間中找出適用的神經網路架構。 & \\
+                        \Block{2-1}{神經網路架構搜尋} & NAS\cite{zoph2016neural} & 用強化學習與獎勵機制訓練控制器，並根據回饋來更新控制器，從搜尋空間中找出適用的神經網路架構。 & 2016 \\
                         \cline{2-4}
-                        & EvoCNN\cite{8712430} & 以標準差及平均值為代表性資料，利用演化式搜尋減少所需的運算資源與時間。 & \\
+                        & EvoCNN\cite{8712430} & 以標準差及平均值為代表性資料，利用演化式搜尋減少所需的運算資源與時間。 & 2020 \\
                         \hline
-                        \Block{2-1}{One-Shot NAS及搜尋策略} & SMASH\cite{brock2017smash} & 利用超級網路和常規訓練兩者分別所得權重之模型在預測結果上的高度相關性，高效率地找出優秀的神經網路架構。 & \\
+                        \Block{2-1}{One-Shot NAS及搜尋策略} & SMASH\cite{brock2017smash} & 利用超級網路和常規訓練兩者分別所得權重之模型在預測結果上的高度相關性，高效率地找出優秀的神經網路架構。 & 2017 \\
                         \cline{2-4}
-                        & SPOS\cite{guo2020single} & 採用均勻抽樣讓所有子架構獲得平等的訓練，搭配演化式計算評估架構，減少訓練所需的時間。 & \\
+                        & SPOS\cite{guo2020single} & 採用均勻抽樣讓所有子架構獲得平等的訓練，搭配演化式計算評估架構，減少訓練所需的時間。 & 2020 \\
                         \hline
-                        \Block{2-1}{自動化機器學習} & AutoML-Zero\cite{pmlr-v119-real20a} & 將機器學習程式碼以簡易的數學符號抽象化，加上代理任務與遷徙機制，能有效演化出高準確率的神經網路模型。 & \\
+                        \Block{2-1}{自動化機器學習} & AutoML-Zero\cite{pmlr-v119-real20a} & 將機器學習程式碼以簡易的數學符號抽象化，加上代理任務與遷徙機制，能有效演化出高準確率的神經網路模型。 & 2020 \\
                         \cline{2-4}
-                        & LEAF\cite{10.1145/3321707.3321721} & 共同演化深度變化結構神經進化配合帕雷托排序的多目標設計，能夠自動找出所需的神經網路模型。 & \\
+                        & LEAF\cite{10.1145/3321707.3321721} & 共同演化深度變化結構神經進化配合帕雷托排序的多目標設計，能夠自動找出所需的神經網路模型。 & 2019 \\
                         \hline
                     \end{NiceTabular}
                 \label{tab:related_work}
             \end{table}
+            
             從深度學習（監督式學習）、超啟發式演算法（非監督式學習）及智慧單車共享系統，
             我們歸納出幾個與本研究計畫相關的重點研究議題：
             \begin{itemize}
@@ -885,15 +886,9 @@
                 \end{figure}
 
             \subsubsection{超參數優化成果}
-                \xtab{tab:hyper_comparison}是論文預設實驗與套用了超啟發演算法參數搜尋策略的對比。
+                \xtab{tab:hyper_comparison}與\xfig{opt_comparison}是論文預設實驗與套用了超啟發演算法參數搜尋策略的對比。
                 每種方法都執行了3次並紀錄平均值和標準差。
                 傳統的基因演算法及我們提出了自適應模擬退火基因演算法皆得到比預設參數更好的實驗結果。
-                SAGA在預測租借車輛的部分擁有較亮眼的表現，
-                GA則是在歸還車輛的部分有突出的效果。
-                SAGA與GA所選定的超參數序列皆小於預設參數，
-                證明了在超啟發演算法的幫助下我們能夠以更少的運算資源取得更好的表現。
-                此優化得益於超啟發演算法的泛用性，
-                無需使用者先行理解該框架的背景知識即可運用。
                 \begin{table}[htbp]
                     \caption{
                         預設參數和採用了超啟發演算法搜尋策略之間的比較
@@ -916,6 +911,34 @@
                     \end{NiceTabular}
                     \label{tab:hyper_comparison}    
                 \end{table}
+                SAGA在預測租借車輛的部分擁有較亮眼的表現，
+                GA則是在歸還車輛的部分有突出的效果。
+                SAGA與GA所選定的超參數序列皆小於預設參數，
+                證明了在超啟發演算法的幫助下我們能夠以更少的運算資源取得更好的表現。
+                此優化得益於超啟發演算法的泛用性，
+                無需使用者先行理解該框架的背景知識即可運用。
+                \begin{figure}[htb]
+                    \centering
+                    \begin{subfigure}{.5\columnwidth}
+                        \centering
+                        \includegraphics[width=\linewidth]{opt_RMSE.pdf}
+                        \caption{
+                            Opt-parameter RMSE
+                        }
+                    \end{subfigure}%
+                    \hfill
+                    \begin{subfigure}{.5\columnwidth}
+                        \centering
+                        \includegraphics[width=\linewidth]{opt_MAPE.pdf}
+                        \caption{ 
+                            Opt-parameter MAPE
+                        }
+                    \end{subfigure}%
+                    \caption{
+                        不同超參數優化策略的比較
+                    }
+                    \label{fig:opt_comparison}
+                \end{figure}
 
         \subsection{使用者介面設計}
             為了視覺化實驗結果以利快速掌握系統各站點現況，

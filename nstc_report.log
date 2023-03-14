@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  14 MAR 2023 01:11
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  14 MAR 2023 15:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -978,7 +978,7 @@ File: SAGAON.png Graphic file (type bmp)
 File: cell.pdf Graphic file (type pdf)
 <use cell.pdf>
  [11] [12] [13]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 574.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 575.
 
 
 Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
@@ -1003,7 +1003,15 @@ File: station_level_RMSE.pdf Graphic file (type pdf)
 <use station_level_RMSE.pdf>
 File: station_level_MAPE.pdf Graphic file (type pdf)
 <use station_level_MAPE.pdf>
- [19]
+
+
+LaTeX Warning: Reference `opt_comparison' on page 19 undefined on input line 889.
+
+File: opt_RMSE.pdf Graphic file (type pdf)
+<use opt_RMSE.pdf>
+File: opt_MAPE.pdf Graphic file (type pdf)
+<use opt_MAPE.pdf>
+[19]
 File: webpage.png Graphic file (type bmp)
 <webpage.png>
 File: asynchronous.png Graphic file (type bmp)
@@ -1027,16 +1035,19 @@ Underfull \hbox (badness 2027) in paragraph at lines 160--162
  []
 
 [27]) [28] (nstc_report.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `nstc_report.out' has not changed.
-(rerunfilecheck)             Checksum: 6827CB957B71718677C8C9474622A01B;3885.
+(rerunfilecheck)             Checksum: 048F1B11C8A5570832E61C571DEC0B19;3885.
  ) 
 Here is how much of TeX's memory you used:
- 31658 strings out of 411044
- 670218 string characters out of 2825189
- 1066607 words of memory out of 3000000
- 51868 multiletter control sequences out of 15000+600000
+ 31706 strings out of 411044
+ 671180 string characters out of 2825189
+ 1065608 words of memory out of 3000000
+ 51914 multiletter control sequences out of 15000+600000
  410024 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  76i,20n,85p,479b,753s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on nstc_report.xdv (28 pages, 581588 bytes).
+Output written on nstc_report.xdv (28 pages, 587896 bytes).
