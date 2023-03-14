@@ -7,7 +7,6 @@
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
 
-\renewcommand{\baselinestretch}{1}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -18,9 +17,8 @@
 \usepackage{nicematrix}
 \usepackage{cite}
 \usepackage{adjustbox}
-\usepackage{makecell}
-\usepackage{multirow}
 \usepackage{geometry}
+\usepackage{setspace}
 
 \geometry{a4paper,left=1cm,right=1cm,top=1cm,bottom=1.5cm}
 \setlength{\parindent}{2em}
@@ -66,59 +64,37 @@
 
 \makeatletter
 \newcommand{\printcover}{
-    {\fontsize{20pt}{20pt}\selectfont
-            \begin{titlepage}
-                \begin{center}
-                國家科學及技術委員會 111 學年度\\
-                \vspace{0.5em}
-                大專生計畫結案報告書\\
-                \vfill
-                \textbf{{\@title}\\
-                An Effective Evolutionary Neural Architecture Search for Bike-Sharing System Demand Prediction}\\
+    {\setstretch{1.5}\fontsize{20pt}{20pt}\selectfont
+        \begin{titlepage}
+            \begin{center}
+            國家科學及技術委員會 111 學年度\\
+            \vspace{0.5em}
+            大專生計畫結案報告書\\
+            \vfill
+            \textbf{{\@title}\\
+            An Effective Evolutionary Neural Architecture Search for Bike-Sharing System Demand Prediction}\\
 
-                \vfill
-                組員：\\
-                B084020005 蔡昀燁\\
-                B083040012 陳柏翰\\
-                B083040022 黃兆延\\
-                \vfill
-                指導老師：\\
-                蔡崇煒\hspace{0.5em}老師\\
-                \vfill
+            \vfill
+            組員：\\
+            B084020005 蔡昀燁\\
+            B083040012 陳柏翰\\
+            B083040022 黃兆延\\
+            \vfill
+            指導老師：\\
+            蔡崇煒\hspace{0.5em}老師\\
+            \vfill
 
-                \end{center}
-            \end{titlepage}
-            \newpage
-            \stepcounter{page}
-        }
+            \end{center}
+        \end{titlepage}
+        \newpage
+        \stepcounter{page}
     }
+}
 \makeatother
 
 \begin{document}
     \printcover
-
-    \renewcommand{\baselinestretch}{1.25}
-    \section{摘要}
-        近年隨著環保意識和智慧城市的影響，
-        公共自行車系統(bike-sharing system ; BSS)因為其環保和便利的特性，
-        已然成為各大城市重點發展的公共設施。
-        因各站點站位有限，
-        可能產生使用者鄰近站點車輛數不足和無站點可停的問題，
-        若工作人員無法即時檢修與調度而造成站點的車輛數和空位不平衡，
-        將會降低使用者使用意願。
-        本專案提出超啟發式演算法(adaptive simulated annealing genetic algorithm ; ASAGA)作為 one-shot 神經網路架構搜尋(neural architecture search ; NAS)的搜尋策略，
-        搭配上以混合為基礎的超參數(hyperparameter)優化。
-        本專題計畫利用台灣微笑單車Youbike2.0的資料進行實驗，
-        建立高效深度學習模型用以預測各站點狀況，
-        並期望實際應用於本地高雄市公共自行車系統以解決各站點車輛不平衡之問題。
-        期望以預測結果改善現有公共自行車的服務品質，
-        提高民眾使用意願，
-        最終達到紓困交通且提升營運方收入的效果。
-        {\vskip 1em}
-        \noindent
-        \textbf{關鍵詞}: 神經網路搜索、超參數優化、自行車使用量預測
-    \newpage
-
+    
     \hypersetup{
         breaklinks=false,%
         linkcolor=black,%
@@ -141,6 +117,26 @@
         urlcolor=blue
     }
     \newpage
+
+    \section{摘要}
+        近年隨著環保意識和智慧城市的影響，
+        公共自行車系統(bike-sharing system ; BSS)因為其環保和便利的特性，
+        已然成為各大城市重點發展的公共設施。
+        因各站點站位有限，
+        可能產生使用者鄰近站點車輛數不足和無站點可停的問題，
+        若工作人員無法即時檢修與調度而造成站點的車輛數和空位不平衡，
+        將會降低使用者使用意願。
+        本專案提出超啟發式演算法(adaptive simulated annealing genetic algorithm ; ASAGA)作為 one-shot 神經網路架構搜尋(neural architecture search ; NAS)的搜尋策略，
+        搭配上以混合為基礎的超參數(hyperparameter)優化。
+        本專題計畫利用台灣微笑單車Youbike2.0的資料進行實驗，
+        建立高效深度學習模型用以預測各站點狀況，
+        並期望實際應用於本地高雄市公共自行車系統以解決各站點車輛不平衡之問題。
+        期望以預測結果改善現有公共自行車的服務品質，
+        提高民眾使用意願，
+        最終達到紓困交通且提升營運方收入的效果。
+        {\vskip 1em}
+        \noindent
+        \textbf{關鍵詞}: 神經網路搜索、超參數優化、自行車使用量預測
 
     \section{研究動機與研究問題}
         
@@ -184,7 +180,6 @@
         減少搜索時間與大量的計算資源消耗，
         期望在有限時間、計算資源的情況下獲得高準確度的結果，
         並投入至本地公共自行車系統來解決腳踏車分配不平衡的問題。
-    \newpage
 
     \section{文獻回顧與探討}
         \subsection{腳踏車共享系統與交通流預測模型相關研究}
@@ -369,12 +364,12 @@
                 \caption{
                     重要參考文獻
                 }
-                \begin{NiceTabular}{|m[c]{8em}|m[c]{7em}|m[c]{18em}|c|}
+                \begin{NiceTabular}{|m[c]{8em}|m[c]{7em}|m[l]{18em}|c|}
                     \CodeBefore
                         \rowcolor[HTML]{C0C0C0}{1}
                     \Body
                         \hline
-                        方法 & 方法簡稱 & 方法簡介 & 時間 \\
+                        方法 & 方法簡稱 & \multicolumn{1}{c}{方法簡介} & 時間 \\
                         \hline
                         \Block{2-1}{交通流預測模型} & multivariate CNN-LSTM\cite{NARMADHA2021} & 混合多層一維卷積層(CNN layers)及長短期記憶網路的混合模型來，獲得比起傳統時序模型更加準確的預測結果。 & 2021 \\
                         \cline{2-4}
@@ -568,7 +563,7 @@
             \renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm
             \renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
 
-                \begin{algorithm}
+                \begin{algorithm}[htb]
                     \caption{
                         ASAGA
                         \label{alg:ASAGA}
@@ -607,7 +602,8 @@
                 \end{algorithm}
 
             \begin{figure}[htb]
-                \includegraphics[width=\textwidth]{flow.pdf}
+                \centering
+                \includegraphics[width=0.725\textwidth]{flow.pdf}
                 \caption{
                     ASAGA的運作流程。
                     在每一世代中ASAGA會從訓練完成的超級網路隨機選擇架構進行評估，
@@ -617,14 +613,6 @@
             \end{figure}
 
         \subsection{最佳化模型超參數}
-            \begin{figure}[htb]
-                \centering
-                \includegraphics[width=0.725\textwidth]{SAGA_scheme.png}
-                \caption{
-                    自適應模擬退火基因演算法尋找最佳超參數的完整流程。
-                }
-                \label{fig:SAGA_scheme}
-            \end{figure}
             \xfig{fig:SAGA_scheme}是自適應模擬退火基因演算法作用於尋找最佳超參數的完整流程。
             在一開始該演算法會隨機產生一個新的群集以進行交配與突變的操作，
             並在評價後用得到的適應度進行模擬退火篩選(SA-selection)，
@@ -640,6 +628,14 @@
             \xfig{fig:crossover}、\xfig{fig:mutation}展示了交配運算子與突變運算子的實際流程，
             類基因演算法中兩者分別代表鄰近(lcoal)和全域(global)搜尋，
             嘗試在有限的資源條件下找出最佳的適應解。
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.625\textwidth]{SAGA_scheme.png}
+                \caption{
+                    自適應模擬退火基因演算法尋找最佳超參數的完整流程。
+                }
+                \label{fig:SAGA_scheme}
+            \end{figure}
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.725\textwidth]{crossover.pdf}
@@ -962,8 +958,8 @@
                     並以客製化標記(custom marker)來代表各個目標站點。
             \end{itemize}
 
-            \xfig{fig:webpage}是成果頁面的整體架構。
-            前後端的部分皆是使用Django預設的網路框架。
+            \newpage
+
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.8\textwidth]{webpage.png}
@@ -972,6 +968,8 @@
                 }
                 \label{fig:webpage}
             \end{figure}
+            \xfig{fig:webpage}是成果頁面的整體架構。
+            前後端的部分皆是使用Django預設的網路框架。
             為了負荷後端系統龐大資料量的輸入輸出，
             我們採用了非同步系統的架構。
             非同步讓我們可以在不主動更新頁面的情況下，
@@ -983,7 +981,8 @@
             可以看到傳統的同步請求必須在一次請求之後必須馬上回覆一次，
             這在處理大量資料時會造成等待時間過久，
             非同步請求則能有效解決掉這方面的困擾。
-            \begin{figure}[htbp]
+
+            \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.35\textwidth]{asynchronous.png}
                 \caption{
@@ -1000,7 +999,7 @@
             我們每三秒即更新一次介面。
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=\textwidth]{nstc_adjust_image.png}
+                \includegraphics[width=0.85\textwidth]{nstc_adjust_image.png}
                 \caption{
                     本專案使用者介面。
                 }
@@ -1041,9 +1040,9 @@
             我們也將不準確次數前10多的站點挑出來，
             以利日後可以針對站點來了解主要造成原因為何，
             以及我們可以如何改善。
-            \begin{figure}[htbp]
+            \begin{figure}[htb]
                 \centering
-                \includegraphics[width=\textwidth]{details.png}
+                \includegraphics[width=0.85\textwidth]{details.png}
                 \caption{
                     當日預測情況以及每月預測最不準的站點。
                 }
@@ -1122,7 +1121,6 @@
         該專案之研究結果已整理齊全並已被IEEE Applied Sensing Conference\cite{SAGAON}所接受，
         已於2023年1月在該研討會口頭發表。
 
-    \clearpage
     \stepcounter{section}
     \phantomsection
         \addcontentsline{toc}{section}{\texorpdfstring{\arabic{section}\hspace{1em}參考文獻}{參考文獻}}
