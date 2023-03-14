@@ -17,42 +17,42 @@ Database file #1: nstc_report.bib
 Done.
 You've used 36 entries,
             4020 wiz_defined-function locations,
-            1029 strings with 15047 characters,
-and the built_in function-call counts, 30288 in all, are:
-= -- 2446
-> -- 804
-< -- 243
-+ -- 436
-- -- 151
-* -- 1480
-:= -- 4395
-add.period$ -- 76
+            1011 strings with 14623 characters,
+and the built_in function-call counts, 30032 in all, are:
+= -- 2385
+> -- 794
+< -- 263
++ -- 439
+- -- 144
+* -- 1446
+:= -- 4295
+add.period$ -- 72
 call.type$ -- 36
-change.case$ -- 42
-chr.to.int$ -- 558
+change.case$ -- 36
+chr.to.int$ -- 621
 cite$ -- 36
-duplicate$ -- 2173
-empty$ -- 2425
-format.name$ -- 183
-if$ -- 7063
+duplicate$ -- 2132
+empty$ -- 2423
+format.name$ -- 173
+if$ -- 7007
 int.to.chr$ -- 0
 int.to.str$ -- 36
-missing$ -- 385
-newline$ -- 137
-num.names$ -- 42
-pop$ -- 902
+missing$ -- 370
+newline$ -- 131
+num.names$ -- 36
+pop$ -- 883
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2375
+skip$ -- 2349
 stack$ -- 0
-substring$ -- 1415
-swap$ -- 1798
-text.length$ -- 57
+substring$ -- 1522
+swap$ -- 1765
+text.length$ -- 56
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 36
 warning$ -- 0
-while$ -- 128
+while$ -- 134
 width$ -- 38
-write$ -- 384
+write$ -- 366
