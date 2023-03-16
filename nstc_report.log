@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  15 MAR 2023 00:12
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  16 MAR 2023 21:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -978,15 +978,15 @@ Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 
 File: flow.pdf Graphic file (type pdf)
 <use flow.pdf>
-File: SAGA_scheme.png Graphic file (type bmp)
-<SAGA_scheme.png>
+File: SAGA_scheme.pdf Graphic file (type pdf)
+<use SAGA_scheme.pdf>
 File: crossover.pdf Graphic file (type pdf)
 <use crossover.pdf>
 File: mutation.pdf Graphic file (type pdf)
 <use mutation.pdf>
 [9] [10] [11]
-File: chromosome_sheme.png Graphic file (type bmp)
-<chromosome_sheme.png>
+File: chromosome_scheme.pdf Graphic file (type pdf)
+<use chromosome_scheme.pdf>
 
 Overfull \hbox (8.08412pt too wide) in paragraph at lines 749--763
 []\TU/標楷體(0)/m/n/12 在 \TU/TimesNewRoman(0)/m/n/12 STDN \TU/標楷體(0)/m/n/12 之 中 共 有 \TU/TimesNewRoman(0)/m/n/12 5 \TU/標楷體(0)/m/n/12 種 使 用 者 可 自 行 更 動 之 參 數，|  分 別 為 注 意 力 長 短 期 記 憶 模 型 數 量 \TU/TimesNewRoman(0)/m/n/12 (att_lstm_num)\TU/標楷體(0)/m/n/12 、|
@@ -1002,8 +1002,8 @@ File: opt_RMSE.pdf Graphic file (type pdf)
 File: opt_MAPE.pdf Graphic file (type pdf)
 <use opt_MAPE.pdf>
  [13] [14]
-File: webpage.png Graphic file (type bmp)
-<webpage.png>
+File: webpage.pdf Graphic file (type pdf)
+<use webpage.pdf>
 File: asynchronous.png Graphic file (type bmp)
 <asynchronous.png>
 File: nstc_adjust_image.png Graphic file (type bmp)
@@ -1026,11 +1026,11 @@ Package rerunfilecheck Info: File `nstc_report.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  31506 strings out of 411044
- 668103 string characters out of 2825189
- 1072517 words of memory out of 3000000
+ 668159 string characters out of 2825189
+ 1072519 words of memory out of 3000000
  51717 multiletter control sequences out of 15000+600000
  410024 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  76i,20n,85p,440b,753s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on nstc_report.xdv (20 pages, 577916 bytes).
+Output written on nstc_report.xdv (20 pages, 578116 bytes).
