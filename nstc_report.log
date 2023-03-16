@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  16 MAR 2023 21:36
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.8.31)  16 MAR 2023 21:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1033,4 +1033,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  76i,20n,85p,440b,753s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on nstc_report.xdv (20 pages, 578116 bytes).
+Output written on nstc_report.xdv (20 pages, 578060 bytes).
