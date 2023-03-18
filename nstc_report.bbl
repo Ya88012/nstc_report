@@ -37,14 +37,13 @@ K.~Simonyan and A.~Zisserman, ``Very deep convolutional networks for
 
 \bibitem{he2016deep}
 K.~He, X.~Zhang, S.~Ren, and J.~Sun, ``Deep residual learning for image
-  recognition,'' in \emph{proceedings of the IEEE Conference on Computer Vision
+  recognition,'' in \emph{Proceedings of the IEEE Conference on Computer Vision
   and Pattern Recognition}, pp. 770--778, 2016.
 
 \bibitem{10.5555/2986459.2986743}
 J.~Bergstra, R.~Bardenet, Y.~Bengio, and B.~K\'{e}gl, ``Algorithms for
-  hyper-parameter optimization,'' in \emph{proceedings of the 24th
-  International Conference on Neural Information Processing Systems}, pp.
-  2546--2554, 2011.
+  hyper-parameter optimization,'' in \emph{Proceedings of the International
+  Conference on Neural Information Processing Systems}, pp. 2546--2554, 2011.
 
 \bibitem{kotsiantis2006data}
 S.~B. Kotsiantis, D.~Kanellopoulos, and P.~E. Pintelas, ``Data preprocessing
@@ -72,8 +71,8 @@ H.~Zhao, L.~Wei, and Q.~Yao, ``Simplifying architecture search for graph neural
 
 \bibitem{pmlr-v80-bender18a}
 G.~Bender, P.-J. Kindermans, B.~Zoph, V.~Vasudevan, and Q.~Le, ``Understanding
-  and simplifying one-shot architecture search,'' in \emph{proceedings of the
-  35th International Conference on Machine Learning}, pp. 550--559, 2018.
+  and simplifying one-shot architecture search,'' in \emph{Proceedings of the
+  International Conference on Machine Learning}, pp. 550--559, 2018.
 
 \bibitem{NARMADHA2021}
 S.~Narmadha and V.~Vijayakumar, ``Spatio-temporal vehicle traffic flow
@@ -82,13 +81,13 @@ S.~Narmadha and V.~Vijayakumar, ``Spatio-temporal vehicle traffic flow
 
 \bibitem{8171119}
 Y.~Liu, H.~Zheng, X.~Feng, and Z.~Chen, ``Short-term traffic flow prediction
-  with {Conv-LSTM},'' in \emph{proceedings of the 2017 9th International
-  Conference on Wireless Communications and Signal Processing}, pp. 1--6, 2017.
+  with {Conv-LSTM},'' in \emph{Proceedings of theInternational Conference on
+  Wireless Communications and Signal Processing}, pp. 1--6, 2017.
 
 \bibitem{8916852}
 A.-S. Mihaita, H.~Li, Z.~He, and M.-A. Rizoiu, ``Motorway traffic flow
-  prediction using advanced deep learning,'' in \emph{proceedings of the 2019
-  IEEE Intelligent Transportation Systems Conference}, pp. 1683--1690, 2019.
+  prediction using advanced deep learning,'' in \emph{Proceedings of the IEEE
+  Intelligent Transportation Systems Conference}, pp. 1683--1690, 2019.
 
 \bibitem{PARK2017154}
 C.~Park and S.~Y. Sohn, ``An optimization approach for the placement of
@@ -103,8 +102,8 @@ E.~H.-C. Lu and Z.-Q. Lin, ``Rental prediction in bicycle-sharing system using
 
 \bibitem{8621918}
 Y.~Zhou and Y.~Huang, ``Context aware flow prediction of bike sharing
-  systems,'' in \emph{proceedings of the 2018 IEEE International Conference on
-  Big Data}, pp. 2393--2402, 2018.
+  systems,'' in \emph{Proceedings of the IEEE International Conference on Big
+  Data}, pp. 2393--2402, 2018.
 
 \bibitem{YANG2020101521}
 Y.~Yang, A.~Heppenstall, A.~Turner, and A.~Comber, ``Using graph structural
@@ -126,7 +125,7 @@ X.~Shi, Z.~Chen, H.~Wang, D.-Y. Yeung, W.-K. Wong, and W.-c. Woo,
 \bibitem{yao2019revisiting}
 H.~Yao, X.~Tang, H.~Wei, G.~Zheng, and Z.~Li, ``Revisiting spatial-temporal
   similarity: {A} deep learning framework for traffic prediction,'' in
-  \emph{proceedings of the AAAI Conference on Artificial Intelligence},
+  \emph{Proceedings of the AAAI Conference on Artificial Intelligence},
   vol.~33, no.~1, pp. 5668--5675, 2019.
 
 \bibitem{zoph2016neural}
@@ -136,8 +135,8 @@ B.~Zoph and Q.~V. Le, ``Neural architecture search with reinforcement
 \bibitem{8477735}
 B.~Wang, Y.~Sun, B.~Xue, and M.~Zhang, ``Evolving deep convolutional neural
   networks by variable-length particle swarm optimization for image
-  classification,'' in \emph{proceedings of the 2018 IEEE Congress on
-  Evolutionary Computation}, pp. 1--8, 2018.
+  classification,'' in \emph{Proceedings of the IEEE Congress on Evolutionary
+  Computation}, pp. 1--8, 2018.
 
 \bibitem{8712430}
 Y.~Sun, B.~Xue, M.~Zhang, and G.~G. Yen, ``Evolving deep convolutional neural
@@ -151,7 +150,7 @@ A.~Brock, T.~Lim, J.~M. Ritchie, and N.~Weston, ``Smash: One-shot model
 
 \bibitem{pedregosa2016hyperparameter}
 F.~Pedregosa, ``Hyperparameter optimization with approximate gradient,'' in
-  \emph{proceedings of the International Conference on Machine Learning}, pp.
+  \emph{Proceedings of the International Conference on Machine Learning}, pp.
   737--746, 2016.
 
 \bibitem{liu2018darts}
@@ -161,7 +160,7 @@ H.~Liu, K.~Simonyan, and Y.~Yang, ``{DARTS}: Differentiable architecture
 \bibitem{guo2020single}
 Z.~Guo, X.~Zhang, H.~Mu, W.~Heng, Z.~Liu, Y.~Wei, and J.~Sun, ``Single path
   one-shot neural architecture search with uniform sampling,'' in
-  \emph{proceedings of the European Conference on Computer Vision}, pp.
+  \emph{Proceedings of the European Conference on Computer Vision}, pp.
   544--560, 2020.
 
 \bibitem{6791438}
@@ -171,31 +170,30 @@ T.~Bäck and H.-P. Schwefel, ``An overview of evolutionary algorithms for
 
 \bibitem{real2019regularized}
 E.~Real, A.~Aggarwal, Y.~Huang, and Q.~V. Le, ``Regularized evolution for image
-  classifier architecture search,'' in \emph{proceedings of the AAAI Conference
+  classifier architecture search,'' in \emph{Proceedings of the AAAI Conference
   on Artificial Intelligence}, vol.~33, no.~1, pp. 4780--4789, 2019.
 
 \bibitem{pmlr-v64-guyon_review_2016}
 I.~Guyon, I.~Chaabane, H.~J. Escalante, S.~Escalera, D.~Jajetic, J.~R. Lloyd,
   N.~Macià, B.~Ray, L.~Romaszko, M.~Sebag, A.~Statnikov, S.~Treguer, and
   E.~Viegas, ``A brief review of the chalearn automl challenge: Any-time
-  any-dataset learning without human intervention,'' in \emph{proceedings of
+  any-dataset learning without human intervention,'' in \emph{Proceedings of
   the Workshop on Automatic Machine Learning}, vol.~64, pp. 21--30, 2016.
 
 \bibitem{pmlr-v119-real20a}
 E.~Real, C.~Liang, D.~So, and Q.~Le, ``{A}uto{ML}-zero: Evolving machine
-  learning algorithms from scratch,'' in \emph{proceedings of the 37th
-  International Conference on Machine Learning}, vol. 119, pp. 8007--8019,
-  2020.
+  learning algorithms from scratch,'' in \emph{Proceedings of the International
+  Conference on Machine Learning}, vol. 119, pp. 8007--8019, 2020.
 
 \bibitem{10.1145/3321707.3321721}
 J.~Liang, E.~Meyerson, B.~Hodjat, D.~Fink, K.~Mutch, and R.~Miikkulainen,
-  ``Evolutionary neural automl for deep learning,'' in \emph{proceedings of the
+  ``Evolutionary neural automl for deep learning,'' in \emph{Proceedings of the
   Genetic and Evolutionary Computation Conference}, pp. 401--409, 2019.
 
 \bibitem{li2015traffic}
 Y.~Li, Y.~Zheng, H.~Zhang, and L.~Chen, ``Traffic prediction in a bike-sharing
-  system,'' in \emph{proceedings of the 23rd SIGSPATIAL International
-  Conference on Advances in Geographic Information Systems}, pp. 1--10, 2015.
+  system,'' in \emph{Proceedings of the SIGSPATIAL International Conference on
+  Advances in Geographic Information Systems}, pp. 1--10, 2015.
 
 \bibitem{10.1162/neco.1997.9.8.1735}
 S.~Hochreiter and J.~Schmidhuber, ``{Long Short-Term Memory},'' \emph{Neural
@@ -204,6 +202,6 @@ S.~Hochreiter and J.~Schmidhuber, ``{Long Short-Term Memory},'' \emph{Neural
 \bibitem{SAGAON}
 B.-H. Chen, Y.-Y. Cai, C.-Y. Huang, and C.-W. Tsai, ``An effective evolutionary
   neural architecture search for bike-sharing system demand prediction,'' in
-  \emph{proceedings of the IEEE Applied Sensing Conference}, 2023.
+  \emph{Proceedings of the IEEE Applied Sensing Conference}, 2023.
 
 \end{thebibliography}

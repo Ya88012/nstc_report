@@ -29,6 +29,5 @@
 \contentsline {section}{\numberline {6}結論與未來工作}{17}{section.6}%
 \contentsline {subsection}{\numberline {6.1}結論}{17}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}未來工作}{17}{subsection.6.2}%
-\contentsline {section}{\numberline {7}相關回饋}{17}{section.7}%
-\contentsline {section}{\numberline {8}致謝和聲明}{18}{section.8}%
-\contentsline {section}{9\hspace {1em}參考文獻}{18}{section*.20}%
+\contentsline {section}{\numberline {7}致謝和聲明}{18}{section.7}%
+\contentsline {section}{8\hspace {1em}參考文獻}{18}{section*.20}%
