@@ -93,7 +93,7 @@
 \makeatother
 
 \begin{document}
-    \printcover
+    % \printcover
     
     \hypersetup{
         breaklinks=false,%
@@ -120,15 +120,15 @@
 
     \section{摘要}
         近年隨著環保意識和智慧城市的影響，
-        公共自行車系統(bike-sharing system ; BSS)因為其環保和便利的特性，
+        公共自行車系統(bike-sharing system; BSS)因為其環保和便利的特性，
         已然成為各大城市重點發展的公共設施。
         因各站點站位有限，
         可能產生使用者鄰近站點車輛數不足和無站點可停的問題，
         若工作人員無法即時檢修與調度而造成站點的車輛數和空位不平衡，
         將會降低使用者使用意願。
-        本專案提出超啟發式演算法(adaptive simulated annealing genetic algorithm ; ASAGA)作為 one-shot 神經網路架構搜尋(neural architecture search ; NAS)的搜尋策略，
+        本專案提出超啟發式演算法(adaptive simulated annealing genetic algorithm; ASAGA)作為 one-shot 神經網路架構搜尋(neural architecture search; NAS)的搜尋策略，
         搭配上以混合為基礎的超參數(hyperparameter)優化。
-        本專題計畫利用台灣微笑單車Youbike2.0的資料進行實驗，
+        本專題利用台灣微笑單車Youbike2.0的資料進行實驗，
         建立高效深度學習模型用以預測各站點狀況，
         並期望實際應用於本地高雄市公共自行車系統以解決各站點車輛不平衡之問題。
         期望以預測結果改善現有公共自行車的服務品質，
@@ -158,7 +158,7 @@
       
         近年來由於深度學習在電腦視覺領域獲得突破性的發展\cite{8114708}，
         將深度學習應用於自行車站點車輛數預測成為本專案的研究重點。
-        目前所被大眾熟知的深度學習模型包括Simonyan等人提出的視覺幾何群(visual geometry group 16 ; VGG16)\cite{simonyan2014very}和He等人設計的殘差網路(residual learning network ; ResNets)\cite{he2016deep}等皆為卷積神經網路(convolutional neural network ; CNN)，
+        目前所被大眾熟知的深度學習模型包括Simonyan等人提出的視覺幾何群(visual geometry group 16; VGG16)\cite{simonyan2014very}和He等人設計的殘差網路(residual learning network; ResNets)\cite{he2016deep}等皆為卷積神經網路(convolutional neural network; CNN)，
         其處理的資料多為圖像，
         然而不同於許多影像辨識的資料集，
         處理公共自行車系統資料時不只需要考慮各站點之間所蘊含的空間特徵，
@@ -185,8 +185,8 @@
         \subsection{腳踏車共享系統與交通流預測模型相關研究}
             
             交通流(traffic flow)擁有高度的時序及空間之關聯性質，
-            卷積長短期混合模型(CNN-LSTM hybrid model)因而成為眾多研究所使用的預測方法。
-            利用卷積神經網路提取空間特徵及長短期記憶模型(long short-term memory ; LSTM)挖掘時間特徵，
+            卷積長短期混合模型(CNN-LSTM hybrid model)\cite{NARMADHA2021}\cite{8171119}\cite{8916852}因而成為眾多研究所使用的預測方法。
+            利用卷積神經網路提取空間特徵及長短期記憶模型(long short-term memory; LSTM)挖掘時間特徵，
             把交通流的時間及空間特性一同進行處理。
             Narmadha等人\cite{NARMADHA2021}建構了多變量的卷積長短期記憶混合模型(multivariate CNN-LSTM)，
             藉由混合一維卷積層(CNN layers)及長短期記憶的框架來預測多變量的輸入，
@@ -206,9 +206,9 @@
             在與系統相關的應用問題中，
             經常使用站點的車輛變化作為預測目標，
             例如：調整各站點自行車數量來改善使用者體驗、分析各站點資訊來決定是否需要增設站點\cite{PARK2017154}等。
-            Lu\cite{9093851}及Zhou\cite{8621918}等人透過在資料集中加入興趣指數(point of interest ; POI)，
+            Lu\cite{9093851}及Zhou\cite{8621918}等人透過在資料集中加入興趣指數(point of interest; POI)，
             突顯各站點的空間特徵，
-            並利用循環神經網路(recurrent neural network ; RNN)進行訓練，
+            並利用循環神經網路(recurrent neural network; RNN)進行訓練，
             有效地提高了預測站點車輛變化的準確度。
             Yang等人\cite{YANG2020101521}以圖論為基礎，
             針對各站點新增特徵點，
@@ -221,13 +221,13 @@
             Shi\cite{shi2015convolutional}等人建立了卷積長短期記憶模型(convolutional long short-term memory)來處理空間與時間的相互依賴性(spatio-temporal dependency)，
             在降雨預測上獲得不錯的實驗成果，
             證明了時間與空間的關聯性(spatio-temporal correlation)對於預測連續時序性的目標是非常關鍵的。
-            Yao等人\cite{yao2019revisiting}提出了空間-時間混合的動態深度學習框架(spatial-temporal dynamic network ; STDN)來進行交通流預測，
+            Yao等人\cite{yao2019revisiting}提出了空間-時間混合的動態深度學習框架(spatial-temporal dynamic network; STDN)來進行交通流預測，
             不像是先前的研究將空間與時間的相互依賴性離散化地處理，
             STDN藉由同時考慮每個站點之間的空間資訊與時間連續關係，
             妥善地處理交通流資料空間與時間的相互依賴性，
             實驗結果表明了STDN比起其他方法有更高的準確率。
 
-        \subsection{神經網路架構搜尋相關研究}
+        \subsection{神經網路架構搜尋及搜尋策略相關研究}
             
             神經網路架構搜尋的目的為利用一套演算法或是框架自動根據需求找出最好的神經網路架構，
             最早的神經網路架構搜尋由Zoph等人\cite{zoph2016neural}所提出，
@@ -241,17 +241,15 @@
             如果沒有足夠的運算資源會非常耗費時間，
             無法應用在真實世界的問題上。
             Wang等人\cite{8477735}有鑑於神經網路架構搜尋花費時間過長，
-            改良並採用粒子群最佳化(particle swarm optimization ; PSO)來優化整體框架。
-            藉由引入網路協定地址(internet protocol address ; IP address)的編碼方式及殘缺層(disabled layer)，
+            改良並採用粒子群最佳化(particle swarm optimization; PSO)來優化整體框架。
+            藉由引入網路協定地址(internet protocol address; IP address)的編碼方式及殘缺層(disabled layer)，
             解決傳統粒子群演算法無法應用於可變層數(variable-length)的問題，
             實驗結果也證明可變層數的神經網路架構搜尋在準確率上有顯著提升。
-            Sun等人\cite{8712430}提出了演化式卷積神經網路(evolutionary convolutional neural network ; EvoCNN)，
-            以基因演算法(genetic algorithm ; GA)為基礎，
+            Sun等人\cite{8712430}提出了演化式卷積神經網路(evolutionary convolutional neural network; EvoCNN)，
+            以基因演算法(genetic algorithm; GA)為基礎，
             使用標準差(standard derivation)及平均值(mean value)為代表性資料，
             減少所需的運算資源與時間，
             結果表明演化式卷積神經網路能夠以更少的參數(parameters)在更短的的訓練週期(epoch)得到更好的結果。
-
-        \subsection{One-Shot NAS及搜尋策略相關研究}
             
             Brock等人\cite{brock2017smash}訓練一個超級網路來生成不同模型架構的權重，
             利用超級網路和常規訓練兩者分別所得權重之模型在預測結果上的高度相關性，
@@ -268,7 +266,7 @@
             許多one-shot NAS框架的變體也相繼被提出。
             高效率神經網路架構搜尋(efficient neural architecture search ； ENAS)使用近似梯度(approximate gradients)\cite{pedregosa2016hyperparameter}來進行強化學習，
             模擬結果顯示ENAS在CIFAR-10資料集只有2.89\%的錯誤率。
-            可微分式神經網路架構搜尋(differentiable architecture search ; DARTS)\cite{liu2018darts}以梯度優化為主軸，
+            可微分式神經網路架構搜尋(differentiable architecture search; DARTS)\cite{liu2018darts}以梯度優化為主軸，
             實驗結果顯示DARTS在影像分類及語言模型化的任務準確率上超過了當代不使用微分策略架構搜尋之框架，
             並且有更好的搜尋效率。
             
@@ -283,29 +281,28 @@
             使用演化式演算法來搜尋架構可以取得更好的效率及準確率。
 
         \subsection{自動化機器學習相關研究}
-            當今的機器學習在各方面的表現都相當出色，
-            其中類神經網路尤為突出。
+            當今的機器學習在各領域的表現都相當亮眼，
+            類神經網路尤為突出。
             然而真實世界的大多非常複雜，
             為處理這些困難的問題，
-            使用的模型通常都經過精心的設計，
-            如前述的神經網路架構搜尋或超參數優化等。
-            這對於一般使用者造成了極大的困擾，
+            使用的模型通常都經過繁雜的設計，
+            如前述的神經網路架構搜尋或超參數優化等，
+            這給一般使用者造成了極大的困擾，
             在缺乏資料科學與該問題所屬的專業領域知識下，
             使用者很難找出最適合該問題的最佳配置。
-            在這樣的發展背景下，
-            自動化機器學習逐漸成為人工智慧領域的一大研究要點。
-            Guyon等人\cite{pmlr-v64-guyon_review_2016}主導了一場沒有人為干涉的自動化機器學習挑戰，
-            其中的參賽隊伍不乏Intel及AAD Freiburg強力隊伍。
+            自動化機器在這樣的發展背景下學習逐漸成為人工智慧領域的一大研究要點。
+            Guyon等人\cite{pmlr-v64-guyon_review_2016}主導了一場沒有人為干涉的自動化機器學習競賽，
+            其中的參賽隊伍不乏Intel及AAD Freiburg等知名隊伍。
             Intel隊伍提出了一個以樹架構(tree)為基底的C/C++實作，
             在隨機子空間(random subspace)動態調整已學習特徵之間的關聯，
             配合梯度加速(gradient boosting)來快速地建構所使用的樹模型。
             這套軟體最初是用以加速與優化半導體製程，
             也因為其商業性，
             Intel官方並沒有公開相關程式碼。
-            AAD Freiburg則是將第三方機器學習庫sckit-learn與連續模型基準型演算法調教(Sequential Model-Based Algorithm Configuration ; SMAC)結合，
+            AAD Freiburg則是將第三方機器學習庫sckit-learn與連續模型基準型演算法調教(Sequential Model-Based Algorithm Configuration; SMAC)結合，
             嘗試挖掘出目前資料集最適合的管線(pipeline)，
             並在最後將組合篩選(ensemble selection)將這些輸出合併在一起。
-            在這個競賽中可以見得組合學習(ensemble learning)在自動化機器學習方面有極高的潛力，
+            在這個競賽中可以發現組合學習(ensemble learning)在自動化機器學習方面有極高的潛力，
             但究竟是同質性(homogeneous)組合還是異質性(hetrogeneous)組合較為有效至今能未有個定論。
 
             演化式計算常被用來在時間與資源壓力下找出近似最佳解。
@@ -326,11 +323,11 @@
             側面證明了其效力。
             Liang等人\cite{10.1145/3321707.3321721}認為自動化機器學習不只要能搜尋到好的架構，
             同時模型超參數的調校也是必不可缺的。
-            他們提出了演化式學習人工智慧框架(learning evolutionary AI framework ; LEAF)來完成這2個目的。
+            他們提出了演化式學習人工智慧框架(learning evolutionary AI framework; LEAF)來完成這2個目的。
             LEAF由3個部分組成：演算法層、系統層與問題-領域(problem-domain)層。
-            演算法層的核心為共同演化深度變化結構神經進化(coevolution deep neuroevolution of augmenting topologies ; CoDeepNEAT)，
+            演算法層的核心為共同演化深度變化結構神經進化(coevolution deep neuroevolution of augmenting topologies; CoDeepNEAT)，
             常被用函式優化(function optimization)、子程序優化(subroutine optimization)及捕食者-獵物動力學(predator-prey dynamics)。
-            系統層是演算法層與雲端運算的應用程式介面(application programming interface ; API)，
+            系統層是演算法層與雲端運算的應用程式介面(application programming interface; API)，
             當個體訓練完成時將所需資訊記錄下來。
             問題-領域層最重要的工作就是優化超參數、架構搜尋與縮小複雜度，
             這也是該框架最核心的部分。
@@ -344,7 +341,7 @@
             其中含括了交通流與自行車系統站點預測、深度學習改良技術（神經網路架構搜尋、神經網路超參數最佳化、自動化機器學習）和超啟發式演算法（基因演算法與模擬退火演算法）。
             \xtab{tab:related_work}進一步整理這些研究之中較為重要的相關研究，
             並說明這些方法的基本概念。
-            本計畫預計發展一個以神經網路架構搜尋及超啟發演算法來提升以深度學習方法為基礎之共享單車系統效能，
+            本專題預計發展一個以神經網路架構搜尋及超啟發演算法來提升以深度學習方法為基礎之共享單車系統效能，
             下列將分別介紹【神經網路架構搜尋】及【超啟發式演算法】相關重要參考文獻之評述。
             STDN\cite{yao2019revisiting}在腳踏車與計程車車流部分都有優異的預測結果，
             但資料集為預先收集好的歷史站點資料，
@@ -396,7 +393,7 @@
             \end{table}
             
             從深度學習（監督式學習）、超啟發式演算法（非監督式學習）及智慧單車共享系統，
-            我們歸納出幾個與本研究計畫相關的重點研究議題：
+            我們歸納出幾個與本研究專題相關的重點研究議題：
             \begin{itemize}
                 \item
                 神經網路架構搜尋技術實際應用於單車共享系統預測時應考慮考慮架構大小、記憶體需求、計算速度與計算速度。
@@ -404,11 +401,11 @@
                 神經網路架構搜尋與超參數優化的解空間非常廣大且稀疏，
                 需要一個高效率的超啟發演算法來快速找到可行解。
                 \item
-                美觀且方便的操作介面能讓一般用戶及管理人員在使用系統時能大幅提升操作體驗，
+                美觀且方便的操作介面能大幅提升一般用戶及管理人員的使用體驗，
                 加強本系統的未來發展性。
             \end{itemize}
             考量上述研究議題，
-            本計畫將嘗試發展一個混合式的【高效超啟發式演算法】，
+            本專題將嘗試發展一個混合式的【高效超啟發式演算法】，
             進一步發展一個【準確的神經網路架構搜尋框架】，
             應用於共享單車系統達到透過人工智慧驅動交通建設發展的目標。
         
@@ -464,7 +461,7 @@
         \end{figure}
 
         為了能讓模型更好地理解交通流資料中空間與時間的相互依賴性以及利用神經網路架構搜尋建立更好的架構，
-        我們提出了一個全新的神經網路架構搜尋框架-模擬退火基因演算法one-shot神經網路搜尋(simulated annealing-genetic algorithm one-shot network ; SAGAON)。
+        我們提出了一個全新的神經網路架構搜尋框架-模擬退火基因演算法one-shot神經網路搜尋(simulated annealing-genetic algorithm one-shot network; SAGAON)。
         \xfig{fig:SAGAON}為SAGAON框架的示意圖，
         主要分為3個部分。
         首先\xfig{fig:SAGAON}(a)中的複數卷積層捕捉空間特徵，
@@ -552,7 +549,7 @@
             交配操作子(crossover operator)藉由隨機交換兩個親代的片段來產生子代架構，
             突變操作子(mutation operator)則根據低的突變率增加子代的多樣性。
             經歷過上述兩個步驟後，
-            會將親代與子代都放入評價函數(evaluation function)來計算均方根誤差(root mean square error ; RMSE)。
+            會將親代與子代都放入評價函數(evaluation function)來計算均方根誤差(root mean square error; RMSE)。
             由於超級網路先前已經被訓練好了，
             整個評價流程(evaluation process)不需要針對不同的架構從頭開始訓練，
             而是參考超級網路的共享權重。
@@ -813,7 +810,7 @@
                 \xtab{tab:comparison}和\xfig{fig:comparison}展示了SAGAON對比其他基線實驗(baseline)在紐約市公共自行車資料集的預測結果，
                 每種方法都執行了5次並紀錄平均值和標準差。
                 SAGAON勝過了所有的基線實驗，
-                均方根誤差跟平均絕對百分比誤差(mean absolute percentage error ; MAPE)在測試資料集上皆為最低。
+                均方根誤差跟平均絕對百分比誤差(mean absolute percentage error; MAPE)在測試資料集上皆為最低。
                 \begin{table}[htb]
                     \caption{
                         基線實驗和SAGAON之間的比較
@@ -941,11 +938,11 @@
             我們架設了一個簡單的網站來呈現模型在每個不同時間區間對每個站點預測的結果，
             並且以顏色來區分預測結果之好壞。
             我們運用開源的框架及模組來架構網頁基礎，
-            搭配應用程式介面(application programming interface ; API)來快速構建出所需的視覺呈現效果。
+            搭配應用程式介面(application programming interface; API)來快速構建出所需的視覺呈現效果。
             我們使用了以下的開源工具來完成這項工作：
             \begin{itemize}
                 \item 框架 → Django： \\
-                    Django是一個以Python所建立的模組模板可視化(model-template views ; MTV)網路框架。
+                    Django是一個以Python所建立的模組模板可視化(model-template views; MTV)網路框架。
                 \item 非同步請求(asynchronous request) → Asynchronous JavaScript and XML (Ajax)： \\
                     Ajax是一個能讓網站能在不用刷新頁面的情況下自動從資料庫抓取資料的一個請求方法(request method)。
                 \item Javascript第三方程式庫 → chart.js： \\
@@ -1076,15 +1073,14 @@
             實際場景中應用。關於使用者介面的調整，我們將新增更多資料分析在主要預
             測面板上，除了即時的站點預測外，也希望能新增調度路線規劃給調度人員參考。
 
-    \newpage
     \section{致謝和聲明}
         
         這項研究受到中華民國國家科學及技術委員會的協助，
         計畫編號NSTC 111-2813-C-110-033-E和NSTC 111-2222-E-110-006-MY3。
         關於前處理和模型的詳細程式碼，
         我們分別在(\url{https://github.com/YunYe0121/CitiBike_preprocessing})和(\url{https://github.com/B083040012/SAGAON})有更詳盡的說明。
-        所有研究結果已整理齊全並已被IEEE Applied Sensing Conference\cite{SAGAON}所接受，
-        已於2023年1月在該研討會口頭發表。
+        研究結果已被IEEE Applied Sensing Conference\cite{SAGAON}所接受，
+        並已於2023年1月在該研討會口頭發表。
 
     \stepcounter{section}
     \phantomsection
